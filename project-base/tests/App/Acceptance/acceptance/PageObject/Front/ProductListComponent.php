@@ -56,6 +56,7 @@ class ProductListComponent extends AbstractPage
             $productName,
             $translatedProductName
         );
+
         throw new NoSuchElementException($message);
     }
 }

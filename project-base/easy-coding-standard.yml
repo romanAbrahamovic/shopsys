@@ -39,6 +39,22 @@ services:
         linesCountBetweenDifferentAnnotationsTypes: 0
     # @deprecated This will be moved from project-base to coding-standards package in next major version
     SlevomatCodingStandard\Sniffs\ControlStructures\UselessIfConditionWithReturnSniff: ~
+    # @deprecated This will be moved from project-base to coding-standards package in next major version
+    PhpCsFixer\Fixer\Whitespace\BlankLineBeforeStatementFixer:
+        statements:
+            - 'break'
+            - 'continue'
+            - 'declare'
+            - 'do'
+            - 'for'
+            - 'foreach'
+            - 'if'
+            - 'return'
+            - 'switch'
+            - 'throw'
+            - 'try'
+            - 'while'
+            - 'yield'
 
 parameters:
     sets:

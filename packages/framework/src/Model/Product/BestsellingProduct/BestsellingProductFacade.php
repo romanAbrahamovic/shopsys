@@ -61,6 +61,7 @@ class BestsellingProductFacade
         );
 
         $manualProductsIndexedByPosition = [];
+
         foreach ($manualBestsellingProducts as $manualBestsellingProduct) {
             $manualProductsIndexedByPosition[$manualBestsellingProduct->getPosition()] = $manualBestsellingProduct->getProduct();
         }

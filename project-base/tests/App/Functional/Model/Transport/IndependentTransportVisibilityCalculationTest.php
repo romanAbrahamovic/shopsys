@@ -55,6 +55,7 @@ class IndependentTransportVisibilityCalculationTest extends TransactionFunctiona
     {
         $transportData = $this->transportDataFactory->create();
         $names = [];
+
         foreach ($this->localization->getLocalesOfAllDomains() as $locale) {
             $names[$locale] = null;
         }
@@ -127,6 +128,7 @@ class IndependentTransportVisibilityCalculationTest extends TransactionFunctiona
     {
         $transportData = $this->transportDataFactory->create();
         $names = [];
+
         foreach ($this->localization->getLocalesOfAllDomains() as $locale) {
             $names[$locale] = 'transportName';
         }

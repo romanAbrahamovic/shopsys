@@ -85,6 +85,7 @@ class GenerateMigrationCommand extends AbstractCommand
         $output->writeln('Checking database schema...');
 
         $filteredSchemaDiffSqlCommands = $this->databaseSchemaFacade->getFilteredSchemaDiffSqlCommands();
+
         if (count($filteredSchemaDiffSqlCommands) === 0) {
             $output->writeln('<info>Database schema is satisfying ORM, no migrations were generated.</info>');
 
@@ -150,11 +151,13 @@ class GenerateMigrationCommand extends AbstractCommand
     private function getAllBundleNamesExceptVendor()
     {
         $bundles = [];
+
         foreach ($this->kernel->getBundles() as $bundle) {
             if (strpos(realpath($bundle->getPath()), realpath($this->vendorDirectoryPath)) !== 0) {
                 $bundles[] = $bundle->getName();
             }
         }
+
         return $bundles;
     }
 

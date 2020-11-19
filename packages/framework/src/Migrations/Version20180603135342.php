@@ -13,6 +13,7 @@ class Version20180603135342 extends AbstractMigration
     public function up(Schema $schema)
     {
         $currenciesCount = $this->sql('SELECT count(*) FROM currencies')->fetchColumn(0);
+
         if ($currenciesCount > 0) {
             return;
         }
@@ -29,6 +30,7 @@ class Version20180603135342 extends AbstractMigration
         )->fetchColumn(
             0
         );
+
         if ($defaultCurrencyId <= 0) {
             $this->sql(
                 'INSERT INTO setting_values (name, domain_id, value, type) VALUES (\'defaultCurrencyId\', 0, 2, \'integer\')'
@@ -40,6 +42,7 @@ class Version20180603135342 extends AbstractMigration
         )->fetchColumn(
             0
         );
+
         if ($defaultDomainCurrencyId > 0) {
             return;
         }

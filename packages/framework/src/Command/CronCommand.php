@@ -72,6 +72,7 @@ class CronCommand extends Command
                 sprintf('Method "%s" has been already called and cannot be called multiple times.', __METHOD__)
             );
         }
+
         if ($this->parameterBag !== null) {
             return;
         }
@@ -189,11 +190,13 @@ class CronCommand extends Command
     {
         $requestedModuleServiceId = $input->getOption(self::OPTION_MODULE);
         $runAllModules = $requestedModuleServiceId === null;
+
         if ($runAllModules) {
             $cronFacade->scheduleModulesByTime($this->getCurrentRoundedTime());
         }
 
         $mutex = $mutexFactory->getPrefixedCronMutex($instanceName);
+
         if (!$mutex->acquireLock(0)) {
             throw new CronCommandException(
                 'Cron is locked. Another cron module is already running.'
@@ -242,6 +245,7 @@ class CronCommand extends Command
         }
 
         $instanceNameChoices = [];
+
         foreach ($instanceNames as $instanceName) {
             $instanceNameChoices[] = $instanceName;
         }

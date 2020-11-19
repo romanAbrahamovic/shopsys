@@ -20,6 +20,7 @@ class CsvReader
         $rows = [];
 
         $handle = fopen($filename, 'r');
+
         if ($handle === false) {
             return $rows;
         }

@@ -105,6 +105,7 @@ class BrandDataFactory implements BrandDataFactoryInterface
         $translations = $brand->getTranslations();
 
         $brandData->descriptions = [];
+
         foreach ($translations as $translation) {
             $brandData->descriptions[$translation->getLocale()] = $translation->getDescription();
         }

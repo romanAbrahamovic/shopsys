@@ -45,6 +45,7 @@ class CartItemTest extends TransactionFunctionalTestCase
         $productData->unit = $this->getReference(UnitDataFixture::UNIT_PIECES);
 
         $productVatsIndexedByDomainId = [];
+
         foreach ($this->domain->getAllIds() as $domainId) {
             $productVatsIndexedByDomainId[$domainId] = $this->vatFacade->getDefaultVatForDomain($domainId);
         }

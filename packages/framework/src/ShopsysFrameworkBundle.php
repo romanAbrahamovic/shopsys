@@ -43,6 +43,7 @@ class ShopsysFrameworkBundle extends Bundle
         $container->registerForAutoconfiguration(AbstractIndex::class)->addTag('elasticsearch.index');
 
         $environment = $container->getParameter('kernel.environment');
+
         if ($environment !== EnvironmentType::DEVELOPMENT) {
             return;
         }

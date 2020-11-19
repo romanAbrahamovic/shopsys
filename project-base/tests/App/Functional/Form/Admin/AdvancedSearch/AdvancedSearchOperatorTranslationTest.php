@@ -34,9 +34,11 @@ class AdvancedSearchOperatorTranslationTest extends FunctionalTestCase
     public function testTranslateOperator()
     {
         $operators = [];
+
         foreach ($this->productAdvancedSearchConfig->getAllFilters() as $filter) {
             $operators = array_merge($operators, $filter->getAllowedOperators());
         }
+
         foreach ($this->orderAdvancedSearchConfig->getAllFilters() as $filter) {
             $operators = array_merge($operators, $filter->getAllowedOperators());
         }

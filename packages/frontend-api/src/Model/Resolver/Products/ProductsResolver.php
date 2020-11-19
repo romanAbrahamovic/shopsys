@@ -66,6 +66,7 @@ class ProductsResolver implements ResolverInterface, AliasedInterface
                 __METHOD__
             ));
         }
+
         if ($this->productFacade !== null) {
             return;
         }
@@ -167,6 +168,7 @@ class ProductsResolver implements ResolverInterface, AliasedInterface
     protected function getOrderingModeFromArgument(Argument $argument): string
     {
         $orderingMode = $this->getDefaultOrderingMode();
+
         if ($argument->offsetExists('orderingMode')) {
             $orderingMode = $argument->offsetGet('orderingMode');
         }

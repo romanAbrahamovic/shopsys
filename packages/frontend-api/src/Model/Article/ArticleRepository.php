@@ -186,8 +186,10 @@ class ArticleRepository
 
         if ($article === null) {
             $message = 'Article with UUID \'' . $uuid . '\' not found.';
+
             throw new ArticleNotFoundException($message);
         }
+
         return $article;
     }
 }

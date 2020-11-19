@@ -19,6 +19,7 @@ class BackendApiDeleteProductTest extends OauthTestCase
         $namesByLocale = [];
         $shortDescriptionsByDomainId = [];
         $longDescriptionsByDomainId = [];
+
         foreach ($this->domain->getAll() as $domainConfig) {
             $namesByLocale[$domainConfig->getLocale()] = 'Name';
             $shortDescriptionsByDomainId[$domainConfig->getId()] = 'Short description';

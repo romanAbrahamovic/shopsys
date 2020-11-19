@@ -87,6 +87,7 @@ class TranslationExtension extends AbstractExtension
     {
         $defaultEscapeFilterCallable = $twig->getFilter('escape')->getCallable();
         $escapedElements = [];
+
         foreach ($elements as $key => $element) {
             $escapedElements[$key] = $defaultEscapeFilterCallable($twig, $element);
         }

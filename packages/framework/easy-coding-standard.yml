@@ -21,6 +21,22 @@ services:
 
     # @deprecated This will be moved from project-base to coding-standards package in next major version
     SlevomatCodingStandard\Sniffs\Operators\DisallowEqualOperatorsSniff: ~
+    # @deprecated This will be moved from project-base to coding-standards package in next major version
+    PhpCsFixer\Fixer\Whitespace\BlankLineBeforeStatementFixer:
+        statements:
+            - 'break'
+            - 'continue'
+            - 'declare'
+            - 'do'
+            - 'for'
+            - 'foreach'
+            - 'if'
+            - 'return'
+            - 'switch'
+            - 'throw'
+            - 'try'
+            - 'while'
+            - 'yield'
 
 parameters:
     sets:
@@ -35,6 +51,7 @@ parameters:
             - '*/src/Model/Product/ProductVisibilityRepository.php'
             - '*/src/Model/Product/Search/FilterQuery.php'
             - '*/src/Controller/Admin/AdministratorController.php'
+            - '*/src/Controller/Admin/OrderController.php'
             - '*/tests/Unit/Model/Customer/CustomerUserUpdateDataFactoryTest.php'
             - '*/tests/Unit/Component/Domain/DomainDataCreatorTest.php'
             - '*/tests/Unit/Component/Image/ImageLocatorTest.php'

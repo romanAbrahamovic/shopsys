@@ -99,6 +99,7 @@ class ErrorController extends FrontBaseController
         if ($this->exceptionController->getDebug()) {
             return $this->createExceptionResponse($request, $exception, $logger);
         }
+
         return $this->createErrorPageResponse($exception->getStatusCode());
     }
 
@@ -164,6 +165,7 @@ class ErrorController extends FrontBaseController
     private function createExceptionResponse(Request $request, FlattenException $exception, DebugLoggerInterface $logger)
     {
         $lastException = $this->exceptionListener->getLastException();
+
         if ($lastException !== null) {
             return $this->getPrettyExceptionResponse($lastException);
         }

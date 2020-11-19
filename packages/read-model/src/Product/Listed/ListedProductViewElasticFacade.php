@@ -260,6 +260,7 @@ class ListedProductViewElasticFacade implements ListedProductViewFacadeInterface
         );
 
         $listedProductViews = [];
+
         foreach ($productsArray as $productArray) {
             $productId = $productArray['id'];
             $listedProductViews[$productId] = $this->listedProductViewFactory->createFromArray(
@@ -318,6 +319,7 @@ class ListedProductViewElasticFacade implements ListedProductViewFacadeInterface
                 sprintf('Method "%s" has been already called and cannot be called multiple times.', __METHOD__)
             );
         }
+
         if ($this->productActionViewFactory !== null) {
             return;
         }

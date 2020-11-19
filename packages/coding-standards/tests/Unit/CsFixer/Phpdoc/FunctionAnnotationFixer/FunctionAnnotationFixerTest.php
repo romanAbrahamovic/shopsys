@@ -30,7 +30,9 @@ final class FunctionAnnotationFixerTest extends AbstractCheckerTestCase
     public function provideWrongToFixedFiles(): Iterator
     {
         yield [__DIR__ . '/wrong/wrong.php', __DIR__ . '/fixed/fixed.php'];
+
         yield [__DIR__ . '/wrong/wrong2.php', __DIR__ . '/fixed/fixed2.php'];
+
         yield [__DIR__ . '/wrong/wrong3.php', __DIR__ . '/fixed/fixed3.php'];
     }
 

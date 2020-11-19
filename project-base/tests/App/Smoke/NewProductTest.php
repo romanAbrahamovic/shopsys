@@ -74,6 +74,7 @@ class NewProductTest extends FunctionalTestCase
 
         /** @var \Symfony\Component\DomCrawler\Field\InputFormField[] $nameForms */
         $nameForms = $form->get('product_form[name]');
+
         foreach ($nameForms as $nameForm) {
             $nameForm->setValue('testProduct');
         }
@@ -105,6 +106,7 @@ class NewProductTest extends FunctionalTestCase
     private function fillManualInputPrices(Form $form)
     {
         $pricingGroupFacade = $this->getContainer()->get(PricingGroupFacade::class);
+
         foreach ($pricingGroupFacade->getAll() as $pricingGroup) {
             $inputName = sprintf(
                 'product_form[pricesGroup][productCalculatedPricesGroup][manualInputPricesByPricingGroupId][%s]',

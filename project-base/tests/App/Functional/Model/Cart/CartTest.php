@@ -95,6 +95,7 @@ class CartTest extends TransactionFunctionalTestCase
         $productData = $this->productDataFactory->create();
         $productData->name = ['cs' => 'Any name'];
         $this->setVats($productData);
+
         return Product::create($productData);
     }
 
@@ -104,6 +105,7 @@ class CartTest extends TransactionFunctionalTestCase
     private function setVats(ProductData $productData): void
     {
         $productVatsIndexedByDomainId = [];
+
         foreach ($this->domain->getAllIds() as $domainId) {
             $productVatsIndexedByDomainId[$domainId] = $this->vatFacade->getDefaultVatForDomain($domainId);
         }

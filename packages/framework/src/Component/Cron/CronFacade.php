@@ -88,6 +88,7 @@ class CronFacade
 
         foreach ($cronModuleConfigs as $cronModuleConfig) {
             $this->runSingleModule($cronModuleConfig);
+
             if ($this->cronModuleExecutor->canRun() === false) {
                 break;
             }
@@ -130,6 +131,7 @@ class CronFacade
             $this->logger->addError('End of ' . $cronModuleConfig->getServiceId() . ' because of error', [
                 'throwable' => $throwable,
             ]);
+
             throw $throwable;
         }
 

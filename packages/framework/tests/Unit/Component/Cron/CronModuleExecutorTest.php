@@ -14,6 +14,7 @@ class CronModuleExecutorTest extends TestCase
         $cronModuleServiceMock->expects($this->once())->method('sleep');
         $cronModuleServiceMock->method('iterate')->willReturnCallback(function () {
             usleep(1000);
+
             return true;
         });
 

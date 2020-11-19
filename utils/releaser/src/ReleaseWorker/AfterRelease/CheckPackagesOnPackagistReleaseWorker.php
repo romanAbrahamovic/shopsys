@@ -61,6 +61,7 @@ final class CheckPackagesOnPackagistReleaseWorker extends AbstractShopsysRelease
 
         $packageWithoutVersion = [];
         $versionsAsString = $version->getVersionString();
+
         foreach ($packagesWithVersions as $package => $packageVersions) {
             if (in_array($versionsAsString, $packageVersions, true)) {
                 continue;

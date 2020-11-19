@@ -29,9 +29,11 @@ class AnnotationsAdder
     {
         $projectClassDocComment = $betterReflectionClass->getDocComment();
         $projectClassFileName = $betterReflectionClass->getFileName();
+
         if ($propertyAndMethodAnnotationsLines === '') {
             return;
         }
+
         if ($projectClassDocComment === '') {
             $classKeywordWithName = 'class ' . $betterReflectionClass->getShortName();
             $this->fileContentReplacer->replaceInFile(

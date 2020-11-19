@@ -71,8 +71,10 @@ class MigrationsLocator
     {
         $migrationsLocations = [];
         $migrationsLocations[] = $this->getApplicationMigrationLocation();
+
         foreach ($this->kernel->getBundles() as $bundle) {
             $migrationsLocation = $this->createMigrationsLocation($bundle);
+
             if ($this->filesystem->exists($migrationsLocation->getDirectory())) {
                 $migrationsLocations[] = $migrationsLocation;
             }

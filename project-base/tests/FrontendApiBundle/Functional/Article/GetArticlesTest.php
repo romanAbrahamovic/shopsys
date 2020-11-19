@@ -114,6 +114,7 @@ class GetArticlesTest extends GraphQlTestCase
         } else {
             $graphQlTypeWithFilters = 'articles';
         }
+
         return '
             {
                 ' . $graphQlTypeWithFilters . ' {
@@ -203,6 +204,7 @@ class GetArticlesTest extends GraphQlTestCase
     private function getExpectedArticles(): array
     {
         $firstDomainLocale = $this->getLocaleForFirstDomain();
+
         return [
             [
                 'name' => t('Terms and conditions', [], 'dataFixtures', $firstDomainLocale),

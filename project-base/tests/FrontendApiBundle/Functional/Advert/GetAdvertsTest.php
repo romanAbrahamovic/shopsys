@@ -145,6 +145,7 @@ class GetAdvertsTest extends GraphQlTestCase
         $responseData = $this->getResponseDataForGraphQlType($response, $graphQlType);
 
         self::assertCount(count($expectedData), $responseData);
+
         foreach ($responseData as $advertData) {
             self::assertArrayHasKey('uuid', $advertData);
             self::assertTrue(Uuid::isValid($advertData['uuid']));
@@ -165,6 +166,7 @@ class GetAdvertsTest extends GraphQlTestCase
         } else {
             $graphQlTypeWithFilters = 'adverts';
         }
+
         return '
             {
                 ' . $graphQlTypeWithFilters . ' {
@@ -199,6 +201,7 @@ class GetAdvertsTest extends GraphQlTestCase
         $imageFacade = $this->getContainer()->get(ImageFacade::class);
         $firstDomainLocale = $this->getLocaleForFirstDomain();
         $testImage = $imageFacade->getImageByEntity($this->advertWithImage, null);
+
         return [
             [
                 'name' => t('Demo advert', [], 'dataFixtures', $firstDomainLocale),

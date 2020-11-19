@@ -89,6 +89,7 @@ class AbstractOrderTestCase extends GraphQlTestCase
                 Money::create($expectedOrderItemTotalPrice['priceWithoutVat'])
             );
         }
+
         return new Price($totalPriceWithoutVat, $totalPriceWithVat);
     }
 

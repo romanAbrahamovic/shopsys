@@ -85,6 +85,7 @@ class PersonalDataExportXmlTest extends TransactionFunctionalTestCase
         $countryData = new CountryData();
         $countryData->names = ['cz' => 'Czech Republic'];
         $countryData->code = 'CZ';
+
         return new Country($countryData);
     }
 
@@ -124,6 +125,7 @@ class PersonalDataExportXmlTest extends TransactionFunctionalTestCase
         $deliveryAddressData->city = 'Ostrava';
         $deliveryAddressData->lastName = 'Fero';
         $deliveryAddressData->firstName = 'Mrkva';
+
         return new DeliveryAddress($deliveryAddressData);
     }
 

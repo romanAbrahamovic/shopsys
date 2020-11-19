@@ -198,9 +198,11 @@ class FilterQuery
         $clone = clone $this;
 
         $prices = [];
+
         if ($minimalPrice !== null) {
             $prices['gte'] = (float)$minimalPrice->getAmount();
         }
+
         if ($maximalPrice !== null) {
             $prices['lte'] = (float)$maximalPrice->getAmount();
         }

@@ -44,6 +44,7 @@ class AnnotationsReplacer
     {
         $methodReturnTypes = $reflectionMethod->getDocBlockReturnTypes();
         $replacedReturnTypes = [];
+
         foreach ($methodReturnTypes as $methodReturnType) {
             $replacedReturnTypes[] = $this->replaceIn((string)$methodReturnType);
         }
@@ -70,6 +71,7 @@ class AnnotationsReplacer
     {
         $parameterTypes = $reflectionParameter->getDocBlockTypeStrings();
         $replacedTypes = [];
+
         foreach ($parameterTypes as $parameterType) {
             $replacedTypes[] = $this->replaceIn((string)$parameterType);
         }

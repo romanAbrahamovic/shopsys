@@ -279,6 +279,7 @@ abstract class GraphQlTestCase extends FunctionalTestCase
         int $quantity = 1
     ): array {
         $price = $this->getConvertedPriceToDomainDefaultCurrency($priceWithoutVat, $vat, $quantity);
+
         return [
             'priceWithVat' => MoneyFormatterHelper::formatWithMaxFractionDigits($price->getPriceWithVat()),
             'priceWithoutVat' => MoneyFormatterHelper::formatWithMaxFractionDigits($price->getPriceWithoutVat()),
@@ -298,6 +299,7 @@ abstract class GraphQlTestCase extends FunctionalTestCase
         int $quantity = 1
     ): string {
         $price = $this->getConvertedPriceToDomainDefaultCurrency($priceWithoutVat, $vat, $quantity);
+
         return '{
             priceWithVat: "' . MoneyFormatterHelper::formatWithMaxFractionDigits($price->getPriceWithVat()) . '",
             priceWithoutVat: "' . MoneyFormatterHelper::formatWithMaxFractionDigits($price->getPriceWithoutVat()) . '",

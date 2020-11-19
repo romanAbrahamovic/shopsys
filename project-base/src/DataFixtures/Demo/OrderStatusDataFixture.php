@@ -72,19 +72,24 @@ class OrderStatusDataFixture extends AbstractReferenceFixture
     ) {
         $orderStatus = $this->orderStatusFacade->getById($orderStatusId);
         $orderStatusData = $this->orderStatusDataFactory->createFromOrderStatus($orderStatus);
+
         foreach ($this->domain->getAllLocales() as $locale) {
             switch ($referenceName) {
                 case self::ORDER_STATUS_NEW:
                     $orderStatusData->name[$locale] = t('New [adjective]', [], 'dataFixtures', $locale);
+
                     break;
                 case self::ORDER_STATUS_IN_PROGRESS:
                     $orderStatusData->name[$locale] = t('In Progress', [], 'dataFixtures', $locale);
+
                     break;
                 case self::ORDER_STATUS_DONE:
                     $orderStatusData->name[$locale] = t('Done', [], 'dataFixtures', $locale);
+
                     break;
                 case self::ORDER_STATUS_CANCELED:
                     $orderStatusData->name[$locale] = t('Canceled', [], 'dataFixtures', $locale);
+
                     break;
                 default:
                     throw new UnknownNameTranslationForOrderStatusReferenceNameException($referenceName);

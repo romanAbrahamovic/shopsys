@@ -218,6 +218,7 @@ class CustomerUserFormType extends AbstractType
         $customerUserData = $form->getData()->customerUserData;
 
         $domainId = $customerUserData->domainId;
+
         if ($this->customerUserFacade->findCustomerUserByEmailAndDomain($email, $domainId) !== $this->customerUser) {
             $context->addViolation('The email is already registered on given domain.');
         }

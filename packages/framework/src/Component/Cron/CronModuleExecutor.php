@@ -47,13 +47,17 @@ class CronModuleExecutor
                 $cronModuleService->wakeUp();
             }
             $inProgress = true;
+
             while ($this->canRun() && $inProgress === true) {
                 $inProgress = $cronModuleService->iterate();
             }
+
             if ($inProgress === true) {
                 $cronModuleService->sleep();
+
                 return self::RUN_STATUS_SUSPENDED;
             }
+
             return self::RUN_STATUS_OK;
         }
 

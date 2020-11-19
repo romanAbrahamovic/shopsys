@@ -154,10 +154,12 @@ class ProductFilterCountDataElasticsearchRepository
     protected function calculateFlagsPlusNumbers(ProductFilterData $productFilterData, FilterQuery $plusFlagsQuery): array
     {
         $flagIds = [];
+
         foreach ($productFilterData->flags as $flag) {
             $flagIds[] = $flag->getId();
         }
         $flagsPlusNumberResult = $this->client->search($plusFlagsQuery->getFlagsPlusNumbersQuery($flagIds));
+
         return $this->aggregationResultToCountDataTransformer->translateFlagsPlusNumbers($flagsPlusNumberResult);
     }
 
@@ -169,10 +171,12 @@ class ProductFilterCountDataElasticsearchRepository
     protected function calculateBrandsPlusNumbers(ProductFilterData $productFilterData, FilterQuery $plusFlagsQuery): array
     {
         $brandsIds = [];
+
         foreach ($productFilterData->brands as $brand) {
             $brandsIds[] = $brand->getId();
         }
         $brandsPlusNumberResult = $this->client->search($plusFlagsQuery->getBrandsPlusNumbersQuery($brandsIds));
+
         return $this->aggregationResultToCountDataTransformer->translateBrandsPlusNumbers($brandsPlusNumberResult);
     }
 
@@ -214,6 +218,7 @@ class ProductFilterCountDataElasticsearchRepository
     ): array {
         $parameterId = $parameterFilterData->parameter->getId();
         $valuesIds = [];
+
         foreach ($parameterFilterData->values as $parameterValue) {
             $valuesIds[] = $parameterValue->getId();
         }
@@ -221,6 +226,7 @@ class ProductFilterCountDataElasticsearchRepository
         $currentQueryResult = $this->client->search(
             $parameterFilterQuery->getParametersPlusNumbersQuery($parameterId, $valuesIds)
         );
+
         return $this->aggregationResultToCountDataTransformer->translateParameterValuesPlusNumbers(
             $currentQueryResult
         );

@@ -30,6 +30,7 @@ abstract class AbstractNativeFixture extends AbstractFixture
     protected function executeNativeQuery($sql, ?array $parameters = null)
     {
         $nativeQuery = $this->entityManager->createNativeQuery($sql, new ResultSetMapping());
+
         return $nativeQuery->execute($parameters);
     }
 }

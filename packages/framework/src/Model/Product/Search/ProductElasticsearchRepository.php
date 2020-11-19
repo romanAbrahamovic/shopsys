@@ -116,6 +116,7 @@ class ProductElasticsearchRepository
         $indexDefinition = $this->indexDefinitionLoader->getIndexDefinition(ProductIndex::getName(), $domainId);
         $parameters = $this->createQuery($indexDefinition->getIndexAlias(), $searchText);
         $result = $this->client->search($parameters);
+
         return $this->extractIds($result);
     }
 
@@ -153,6 +154,7 @@ class ProductElasticsearchRepository
 
         $query = $this->filterQueryFactory->create($indexName)
             ->search($searchText);
+
         return $query->getQuery();
     }
 
@@ -163,6 +165,7 @@ class ProductElasticsearchRepository
     protected function extractIds(array $result): array
     {
         $hits = $result['hits']['hits'];
+
         return array_column($hits, '_id');
     }
 
@@ -207,6 +210,7 @@ class ProductElasticsearchRepository
     public function getProductsByFilterQuery(FilterQuery $filterQuery): array
     {
         $result = $this->client->search($filterQuery->getQuery());
+
         return $this->extractHits($result);
     }
 }

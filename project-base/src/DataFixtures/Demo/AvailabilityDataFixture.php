@@ -102,6 +102,7 @@ class AvailabilityDataFixture extends AbstractReferenceFixture
     private function createAvailability(AvailabilityData $availabilityData, $referenceName = null)
     {
         $availability = $this->availabilityFacade->create($availabilityData);
+
         if ($referenceName !== null) {
             $this->addReference($referenceName, $availability);
         }

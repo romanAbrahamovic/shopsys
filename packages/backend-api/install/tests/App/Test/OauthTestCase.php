@@ -79,6 +79,7 @@ class OauthTestCase extends FunctionalTestCase
 
         $response = $client->getResponse();
         $jsonResponse = json_decode($response->getContent(), true);
+
         return $jsonResponse['access_token'];
     }
 
@@ -99,6 +100,7 @@ class OauthTestCase extends FunctionalTestCase
         $uri = $this->getDomainBaseUrl() . $path;
         $encodedContent = $content !== null ? json_encode($content) : null;
         $client->request($method, $uri, [], [], $headers, $encodedContent);
+
         return $client->getResponse();
     }
 
@@ -118,6 +120,7 @@ class OauthTestCase extends FunctionalTestCase
     {
         $uuid = preg_replace('~^.*/~', '', $url);
         Assert::uuid($uuid);
+
         return $uuid;
     }
 }

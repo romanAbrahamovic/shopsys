@@ -90,6 +90,7 @@ class BackendApiCreateProductTest extends OauthTestCase
     {
         $response = $this->runOauthRequest('GET', '/api/v1/products/' . $uuid);
         $this->assertSame(200, $response->getStatusCode());
+
         return json_decode($response->getContent(), true);
     }
 
@@ -107,6 +108,7 @@ class BackendApiCreateProductTest extends OauthTestCase
 
         $nullsByLocale = [];
         $nullsByDomainId = [];
+
         foreach ($this->domain->getAll() as $domainConfig) {
             $nullsByLocale[$domainConfig->getLocale()] = null;
             $nullsByDomainId[$domainConfig->getId()] = null;
@@ -136,9 +138,11 @@ class BackendApiCreateProductTest extends OauthTestCase
         $longDescriptionsByDomainId = [];
         $firstDomainLocale = $this->getFirstDomainLocale();
         $notExistingDomainId = $this->getNotExistingDomainId();
+
         foreach ($this->domain->getAll() as $domainConfig) {
             $domainLocale = $domainConfig->getLocale();
             $domainId = $domainConfig->getId();
+
             if ($domainId === Domain::FIRST_DOMAIN_ID) {
                 $namesByLocale[$firstDomainLocale] = 'name longer than 255 letters Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam mollis erat turpis, ac ullamcorper tellus tempor a. Sed dapibus posuere dui sed iaculis. Phasellus non magna et urna aliquam fringilla et sit amet diam. Suspendisse suscipit lacus quis nisi sed.';
                 $shortDescriptionsByDomainId[$domainId] = 123;
@@ -201,6 +205,7 @@ class BackendApiCreateProductTest extends OauthTestCase
     private function getNotExistingDomainId(): int
     {
         $notExistingDomainId = 99;
+
         while (in_array($notExistingDomainId, $this->domain->getAllIds(), true)) {
             $notExistingDomainId++;
         }

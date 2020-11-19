@@ -137,6 +137,7 @@ class CartFacadeTest extends TransactionFunctionalTestCase
         ]);
 
         $cart = $this->getCartByCustomerUserIdentifier($customerUserIdentifier);
+
         foreach ($cart->getItems() as $cartItem) {
             if ($cartItem->getId() === $cartItem1->getId()) {
                 $this->assertSame(5, $cartItem->getQuantity(), 'Correct change quantity product');
@@ -234,6 +235,7 @@ class CartFacadeTest extends TransactionFunctionalTestCase
     {
         /** @var \Shopsys\FrameworkBundle\Model\Customer\User\CustomerUserIdentifierFactory $customerUserIdentifierFactory */
         $customerUserIdentifierFactory = $this->getCustomerUserIdentifierFactoryMock($customerUserIdentifier);
+
         return new CartFacade(
             $this->em,
             $this->cartFactory,

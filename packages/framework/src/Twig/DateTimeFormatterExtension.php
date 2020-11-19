@@ -161,6 +161,7 @@ class DateTimeFormatterExtension extends AbstractExtension
         if ($value instanceof DateTimeImmutable) {
             return new DateTime($value->format(DATE_ISO8601));
         }
+
         return new DateTime($value);
     }
 

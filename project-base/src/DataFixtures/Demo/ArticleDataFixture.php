@@ -179,6 +179,7 @@ class ArticleDataFixture extends AbstractReferenceFixture
     private function createArticleFromArticleData(ArticleData $articleData, ?string $referenceName = null): void
     {
         $article = $this->articleFacade->create($articleData);
+
         if ($referenceName !== null) {
             $this->addReferenceForDomain($referenceName, $article, $articleData->domainId);
         }

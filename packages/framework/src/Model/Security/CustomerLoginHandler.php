@@ -35,6 +35,7 @@ class CustomerLoginHandler implements AuthenticationSuccessHandlerInterface, Aut
     public function onAuthenticationSuccess(Request $request, TokenInterface $token)
     {
         $referer = $request->headers->get('referer');
+
         if ($request->isXmlHttpRequest()) {
             $responseData = [
                 'success' => true,
@@ -43,6 +44,7 @@ class CustomerLoginHandler implements AuthenticationSuccessHandlerInterface, Aut
 
             return new JsonResponse($responseData);
         }
+
         return new RedirectResponse($referer);
     }
 

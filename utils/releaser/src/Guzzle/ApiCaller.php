@@ -34,6 +34,7 @@ final class ApiCaller
         $response = $this->client->send($request);
 
         $json = $response->getBody()->getContents();
+
         return Json::decode($json, Json::FORCE_ARRAY);
     }
 
@@ -55,6 +56,7 @@ final class ApiCaller
         $responses = unwrap($promises);
 
         $stringResponses = [];
+
         foreach ($responses as $response) {
             $stringResponses[] = $response->getBody()->getContents();
         }

@@ -49,6 +49,7 @@ class ImageAbstractFilesystemValidator extends ImageValidator
     public function validate($value, Constraint $constraint)
     {
         $abstractPath = $this->fileUpload->getTemporaryFilepath($value->getFilename());
+
         if ($this->mountManager->has('main://' . $abstractPath)) {
             $localFileUniqueName = $this->fileUpload->getTemporaryFilepath(uniqid() . $value->getFilename());
             $localPath = $this->parameterBag->get('shopsys.root_dir') . $localFileUniqueName;

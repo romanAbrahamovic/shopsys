@@ -38,9 +38,11 @@ class AdvertsResolver implements ResolverInterface, AliasedInterface
     public function resolve(?string $positionName = null): array
     {
         $domainId = $this->domain->getId();
+
         if ($positionName === null) {
             return $this->advertFacade->getVisibleAdvertsByDomainId($domainId);
         }
+
         return $this->advertFacade->getVisibleAdvertsByDomainIdAndPositionName($domainId, $positionName);
     }
 

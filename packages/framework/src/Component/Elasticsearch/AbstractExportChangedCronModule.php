@@ -78,6 +78,7 @@ abstract class AbstractExportChangedCronModule implements SimpleCronModuleInterf
                 sprintf('Method "%s" has been already called and cannot be called multiple times.', __METHOD__)
             );
         }
+
         if ($this->eventDispatcher !== null) {
             return;
         }

@@ -14,6 +14,7 @@ abstract class AbstractMigration extends DoctrineAbstractMigration
     protected function addSql($sql, array $params = [], array $types = [])
     {
         $message = 'Calling method "addSql" is not allowed. Use "sql" method instead';
+
         throw new MethodIsNotAllowedException($message);
     }
 

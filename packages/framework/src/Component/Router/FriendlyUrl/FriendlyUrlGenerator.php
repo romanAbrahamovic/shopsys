@@ -49,12 +49,16 @@ class FriendlyUrlGenerator extends BaseUrlGenerator
         $referenceType = self::ABSOLUTE_PATH
     ) {
         $route = $routeCollection->get($routeName);
+
         if ($route === null) {
             $message = 'Unable to generate a URL for the named route "' . $routeName . '" as such route does not exist.';
+
             throw new RouteNotFoundException($message);
         }
+
         if (!array_key_exists('id', $parameters)) {
             $message = 'Missing mandatory parameter "id" for route ' . $routeName . '.';
+
             throw new MissingMandatoryParametersException($message);
         }
         $entityId = $parameters['id'];
@@ -68,6 +72,7 @@ class FriendlyUrlGenerator extends BaseUrlGenerator
             );
         } catch (FriendlyUrlNotFoundException $e) {
             $message = 'Unable to generate a URL for the named route "' . $routeName . '" as such route does not exist.';
+
             throw new RouteNotFoundException($message, 0, $e);
         }
 

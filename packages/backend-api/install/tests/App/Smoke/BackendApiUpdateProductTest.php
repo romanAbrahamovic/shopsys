@@ -175,6 +175,7 @@ class BackendApiUpdateProductTest extends OauthTestCase
         $response = $this->runOauthRequest('POST', '/api/v1/products', $product);
 
         $location = $response->headers->get('Location');
+
         return $this->extractUuid($location);
     }
 
@@ -188,6 +189,7 @@ class BackendApiUpdateProductTest extends OauthTestCase
         $this->assertSame(200, $response->getStatusCode());
         $data = json_decode($response->getContent(), true);
         unset($data['uuid']);
+
         return $data;
     }
 }

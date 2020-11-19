@@ -28,10 +28,15 @@ final class MissingParamAnnotationsFixerTest extends AbstractCheckerTestCase
     public function provideWrongToFixedFiles(): Iterator
     {
         yield [__DIR__ . '/wrong/wrong.php', __DIR__ . '/fixed/fixed.php'];
+
         yield [__DIR__ . '/wrong/wrong2.php', __DIR__ . '/fixed/fixed2.php'];
+
         yield [__DIR__ . '/wrong/wrong3.php', __DIR__ . '/fixed/fixed3.php'];
+
         yield [__DIR__ . '/wrong/wrong4.php', __DIR__ . '/fixed/fixed4.php'];
+
         yield [__DIR__ . '/wrong/wrong5.php', __DIR__ . '/fixed/fixed5.php'];
+
         yield [__DIR__ . '/wrong/wrong6.php', __DIR__ . '/fixed/fixed6.php'];
     }
 

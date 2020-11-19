@@ -118,6 +118,7 @@ class AdvertController extends AdminBaseController
                     'url' => $this->generateUrl('admin_advert_edit', ['id' => $advert->getId()]),
                 ]
             );
+
             return $this->redirectToRoute('admin_advert_list');
         }
 
@@ -159,6 +160,7 @@ class AdvertController extends AdminBaseController
             function ($row) {
                 $advert = $this->advertFacade->getById($row['a']['id']);
                 $row['advert'] = $advert;
+
                 return $row;
             }
         );
@@ -217,6 +219,7 @@ class AdvertController extends AdminBaseController
                         'url' => $this->generateUrl('admin_advert_edit', ['id' => $advert->getId()]),
                     ]
                 );
+
             return $this->redirectToRoute('admin_advert_list');
         }
 

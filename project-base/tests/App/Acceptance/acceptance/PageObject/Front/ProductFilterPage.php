@@ -105,6 +105,7 @@ class ProductFilterPage extends AbstractPage
             $parameterLabel,
             $translatedParameterLabel
         );
+
         throw new NoSuchElementException($message);
     }
 
@@ -135,6 +136,7 @@ class ProductFilterPage extends AbstractPage
             $parameterValueText,
             $translatedParameterValueText
         );
+
         throw new NoSuchElementException($message);
     }
 }

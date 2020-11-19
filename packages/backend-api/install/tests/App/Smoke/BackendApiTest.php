@@ -23,6 +23,7 @@ class BackendApiTest extends OauthTestCase
         $this->assertSame(200, $response->getStatusCode());
         $jsonContent = json_decode($response->getContent(), true);
         $this->assertCount(100, $jsonContent);
+
         foreach ($jsonContent as $product) {
             $this->assertProductJsonStructure($product);
         }

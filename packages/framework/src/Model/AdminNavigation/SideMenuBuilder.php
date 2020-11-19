@@ -182,6 +182,7 @@ class SideMenuBuilder
                 'Free shipping and payment'
             )]
         );
+
         if ($this->authorizationChecker->isGranted(Roles::ROLE_SUPER_ADMIN)) {
             $currenciesMenuItem = $menu->addChild(
                 'currencies',
@@ -306,6 +307,7 @@ class SideMenuBuilder
         $menu->setExtra('icon', 'gear');
 
         $identificationMenu = $menu->addChild('identification', ['label' => t('E-shop identification')]);
+
         if ($this->domain->isMultidomain()) {
             $domainsMenu = $identificationMenu->addChild(
                 'domains',
@@ -466,6 +468,7 @@ class SideMenuBuilder
 
         /** @var \Shopsys\FrameworkBundle\Model\AdminNavigation\ConfigureMenuEvent $configureMenuEvent */
         $configureMenuEvent = $this->eventDispatcher->dispatch($event, $eventName);
+
         return $configureMenuEvent;
     }
 }

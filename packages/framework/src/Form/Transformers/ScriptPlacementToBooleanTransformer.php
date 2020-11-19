@@ -28,6 +28,7 @@ class ScriptPlacementToBooleanTransformer implements DataTransformerInterface
     {
         if (!is_bool($scriptHasOrderPlacement)) {
             $message = 'Expected boolean, got "' . gettype($scriptHasOrderPlacement) . '".';
+
             throw new TransformationFailedException($message);
         }
 

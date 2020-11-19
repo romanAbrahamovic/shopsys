@@ -77,6 +77,7 @@ class FriendlyUrlFacade
     public function createFriendlyUrls($routeName, $entityId, array $namesByLocale)
     {
         $friendlyUrls = $this->friendlyUrlFactory->createForAllDomains($routeName, $entityId, $namesByLocale);
+
         foreach ($friendlyUrls as $friendlyUrl) {
             $locale = $this->domain->getDomainConfigById($friendlyUrl->getDomainId())->getLocale();
             $this->resolveUniquenessOfFriendlyUrlAndFlush($friendlyUrl, $namesByLocale[$locale]);
@@ -92,6 +93,7 @@ class FriendlyUrlFacade
     public function createFriendlyUrlForDomain($routeName, $entityId, $entityName, $domainId)
     {
         $friendlyUrl = $this->friendlyUrlFactory->createIfValid($routeName, $entityId, (string)$entityName, $domainId);
+
         if ($friendlyUrl !== null) {
             $this->resolveUniquenessOfFriendlyUrlAndFlush($friendlyUrl, $entityName);
         }
@@ -104,8 +106,10 @@ class FriendlyUrlFacade
     protected function resolveUniquenessOfFriendlyUrlAndFlush(FriendlyUrl $friendlyUrl, $entityName)
     {
         $attempt = 0;
+
         do {
             $attempt++;
+
             if ($attempt > static::MAX_URL_UNIQUE_RESOLVE_ATTEMPT) {
                 throw new ReachMaxUrlUniqueResolveAttemptException(
                     $friendlyUrl,
@@ -114,6 +118,7 @@ class FriendlyUrlFacade
             }
 
             $domainRouter = $this->domainRouterFactory->getRouter($friendlyUrl->getDomainId());
+
             try {
                 $matchedRouteData = $domainRouter->match('/' . $friendlyUrl->getSlug());
             } catch (ResourceNotFoundException $e) {
@@ -234,6 +239,7 @@ class FriendlyUrlFacade
             $mainFriendlyUrl->getEntityId(),
             $mainFriendlyUrl->getDomainId()
         );
+
         foreach ($friendlyUrls as $friendlyUrl) {
             $friendlyUrl->setMain(false);
         }

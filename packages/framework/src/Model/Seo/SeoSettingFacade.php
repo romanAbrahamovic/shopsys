@@ -48,6 +48,7 @@ class SeoSettingFacade
     public function getDescriptionsMainPageIndexedByDomainIds(array $domainConfigs)
     {
         $descriptionsMainPageByDomainIds = [];
+
         foreach ($domainConfigs as $domainConfig) {
             $descriptionsMainPageByDomainIds[$domainConfig->getId()] = $this->getDescriptionMainPage(
                 $domainConfig->getId()

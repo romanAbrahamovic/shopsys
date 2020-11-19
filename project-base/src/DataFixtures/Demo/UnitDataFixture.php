@@ -82,6 +82,7 @@ class UnitDataFixture extends AbstractReferenceFixture
     private function createUnit(UnitData $unitData, $referenceName = null)
     {
         $unit = $this->unitFacade->create($unitData);
+
         if ($referenceName !== null) {
             $this->addReference($referenceName, $unit);
         }

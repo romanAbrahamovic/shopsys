@@ -109,6 +109,7 @@ class ProductResolverMap extends ResolverMap
                 sprintf('Method "%s" has been already called and cannot be called multiple times.', __METHOD__)
             );
         }
+
         if ($this->brandFacade !== null) {
             return;
         }
@@ -135,6 +136,7 @@ class ProductResolverMap extends ResolverMap
                 sprintf('Method "%s" has been already called and cannot be called multiple times.', __METHOD__)
             );
         }
+
         if ($this->productAccessoryFacade !== null) {
             return;
         }
@@ -161,6 +163,7 @@ class ProductResolverMap extends ResolverMap
                 sprintf('Method "%s" has been already called and cannot be called multiple times.', __METHOD__)
             );
         }
+
         if ($this->currentCustomerUser !== null) {
             return;
         }
@@ -187,6 +190,7 @@ class ProductResolverMap extends ResolverMap
                 sprintf('Method "%s" has been already called and cannot be called multiple times.', __METHOD__)
             );
         }
+
         if ($this->productFacade !== null) {
             return;
         }
@@ -216,6 +220,7 @@ class ProductResolverMap extends ResolverMap
                 sprintf('Method "%s" has been already called and cannot be called multiple times.', __METHOD__)
             );
         }
+
         if ($this->parameterWithValuesFactory !== null) {
             return;
         }
@@ -248,6 +253,7 @@ class ProductResolverMap extends ResolverMap
                     if ($isVariant) {
                         return 'Variant';
                     }
+
                     return 'RegularProduct';
                 },
             ],
@@ -270,6 +276,7 @@ class ProductResolverMap extends ResolverMap
             },
             'link' => function ($data) {
                 $productId = $data instanceof Product ? $data->getId() : $data['id'];
+
                 return $this->getProductLink($productId);
             },
             'categories' => function ($data) {
@@ -308,6 +315,7 @@ class ProductResolverMap extends ResolverMap
             },
             'accessories' => function ($data) {
                 $product = $data instanceof Product ? $data : $this->productFacade->getById($data['id']);
+
                 return $this->productAccessoryFacade->getAllAccessories(
                     $product,
                     $this->domain->getId(),
@@ -332,6 +340,7 @@ class ProductResolverMap extends ResolverMap
                 if ($data instanceof Product) {
                     return $data->getSeoMetaDescription($this->domain->getId());
                 }
+
                 return $data['seo_meta_description'];
             },
         ];
@@ -361,9 +370,11 @@ class ProductResolverMap extends ResolverMap
             return $data->getFlags();
         }
         $flags = [];
+
         foreach ($data['flags'] as $flagId) {
             $flags[] = $this->flagFacade->getById($flagId);
         }
+
         return $flags;
     }
 
@@ -376,9 +387,11 @@ class ProductResolverMap extends ResolverMap
         $categoryIds = $data['categories'];
 
         $categories = [];
+
         foreach ($categoryIds as $categoryId) {
             $categories[] = $this->categoryFacade->getById($categoryId);
         }
+
         return $categories;
     }
 }

@@ -92,6 +92,7 @@ class FileUpload
                 sprintf('Method "%s" has been already called and cannot be called multiple times.', __METHOD__)
             );
         }
+
         if ($this->parameterBag !== null) {
             return;
         }
@@ -133,12 +134,14 @@ class FileUpload
     {
         if ($filename !== '') {
             $filepath = $this->getTemporaryFilepath($filename);
+
             try {
                 $this->filesystem->delete($filepath);
             } catch (FileNotFoundException $ex) {
                 return false;
             }
         }
+
         return true;
     }
 
@@ -213,9 +216,11 @@ class FileUpload
     public function getOriginalFilenameByTemporary($temporaryFilename)
     {
         $matches = [];
+
         if ($temporaryFilename && preg_match('/^.+?__(.+)$/', $temporaryFilename, $matches)) {
             return $matches[1];
         }
+
         return $temporaryFilename;
     }
 
@@ -225,6 +230,7 @@ class FileUpload
     public function preFlushEntity(EntityFileUploadInterface $entity)
     {
         $filesForUpload = $entity->getTemporaryFilesForUpload();
+
         foreach ($filesForUpload as $key => $fileForUpload) {
             $originalFilename = $this->getOriginalFilenameByTemporary($fileForUpload->getTemporaryFilename());
             $entity->setFileAsUploaded($key, $originalFilename);
@@ -263,6 +269,7 @@ class FileUpload
                 $this->mountManager->move('main://' . $sourceFilepath, 'main://' . $targetFilename);
             } catch (IOException $ex) {
                 $message = 'Failed to rename file from temporary directory to entity';
+
                 throw new MoveToEntityFailedException($message, $ex);
             }
         }

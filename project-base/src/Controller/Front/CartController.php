@@ -113,6 +113,7 @@ class CartController extends FrontBaseController
         $cartItems = $cart === null ? [] : $cart->getItems();
 
         $cartFormData = ['quantities' => []];
+
         foreach ($cartItems as $cartItem) {
             $cartFormData['quantities'][$cartItem->getId()] = $cartItem->getQuantity();
         }
@@ -121,6 +122,7 @@ class CartController extends FrontBaseController
         $form->handleRequest($request);
 
         $invalidCart = false;
+
         if ($form->isSubmitted() && $form->isValid()) {
             try {
                 $this->cartFacade->changeQuantities($form->getData()['quantities']);
@@ -299,6 +301,7 @@ class CartController extends FrontBaseController
                 $this->sendAddProductResultFlashMessage($addProductResult);
 
                 $accessories = [];
+
                 if ($this->moduleFacade->isEnabled(ModuleList::ACCESSORIES_ON_BUY)) {
                     $accessories = $this->listedProductViewFacade->getAccessories(
                         $addProductResult->getCartItem()->getProduct()->getId(),
@@ -427,6 +430,7 @@ class CartController extends FrontBaseController
     private function isCartHoverEnable(): bool
     {
         $masterRequest = $this->requestStack->getMasterRequest();
+
         if ($masterRequest === null) {
             return false;
         }
@@ -446,6 +450,7 @@ class CartController extends FrontBaseController
                 sprintf('Method "%s" has been already called and cannot be called multiple times.', __METHOD__)
             );
         }
+
         if ($this->moduleFacade !== null) {
             return;
         }

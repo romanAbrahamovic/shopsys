@@ -48,15 +48,18 @@ class CartWatcher
     public function getModifiedPriceItemsAndUpdatePrices(Cart $cart)
     {
         $modifiedItems = [];
+
         foreach ($cart->getItems() as $cartItem) {
             $productPrice = $this->productPriceCalculationForCustomerUser->calculatePriceForCurrentUser(
                 $cartItem->getProduct()
             );
+
             if (!$productPrice->getPriceWithVat()->equals($cartItem->getWatchedPrice())) {
                 $modifiedItems[] = $cartItem;
             }
             $cartItem->setWatchedPrice($productPrice->getPriceWithVat());
         }
+
         return $modifiedItems;
     }
 
@@ -68,6 +71,7 @@ class CartWatcher
     public function getNotListableItems(Cart $cart, CurrentCustomerUser $currentCustomerUser)
     {
         $notListableItems = [];
+
         foreach ($cart->getItems() as $item) {
             try {
                 $product = $item->getProduct();

@@ -82,6 +82,7 @@ class ProductFacade
         )->setFrom($offset);
 
         $productsResult = $this->productElasticsearchRepository->getSortedProductsResultByFilterQuery($filterQuery);
+
         return $productsResult->getHits();
     }
 
@@ -104,6 +105,7 @@ class ProductFacade
         )->setFrom($offset);
 
         $productsResult = $this->productElasticsearchRepository->getSortedProductsResultByFilterQuery($filterQuery);
+
         return $productsResult->getHits();
     }
 
@@ -138,6 +140,7 @@ class ProductFacade
         )->setFrom($offset);
 
         $productsResult = $this->productElasticsearchRepository->getSortedProductsResultByFilterQuery($filterQuery);
+
         return $productsResult->getHits();
     }
 

@@ -95,6 +95,7 @@ EOF
 
         if (!$filename) {
             $stdin = $this->getStdin();
+
             if (!$stdin) {
                 throw new RuntimeException('Please provide a filename or pipe file content to STDIN.');
             }
@@ -205,6 +206,7 @@ EOF
 
         array_walk($filesInfo, function (&$v) use (&$errors) {
             $v['file'] = (string)$v['file'];
+
             if (!$v['valid']) {
                 ++$errors;
             }
@@ -235,6 +237,7 @@ EOF
             ) {
                 continue;
             }
+
             yield $file;
         }
     }
@@ -263,6 +266,7 @@ EOF
         }
 
         $inputs = '';
+
         while (!feof(STDIN)) {
             $inputs .= fread(STDIN, 1024);
         }

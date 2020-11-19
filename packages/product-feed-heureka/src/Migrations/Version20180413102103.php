@@ -44,8 +44,10 @@ class Version20180413102103 extends AbstractMigration
                 'context' => 'product',
             ]
         )->fetchAll(PDO::FETCH_ASSOC);
+
         foreach ($rows as $row) {
             $jsonData = json_decode($row['json_value'], true);
+
             foreach ($jsonData['cpc'] ?? [] as $domainId => $cpc) {
                 $this->sql(
                     'INSERT INTO heureka_product_domains (product_id, domain_id, cpc) 
@@ -71,6 +73,7 @@ class Version20180413102103 extends AbstractMigration
                 'context' => 'heureka_category',
             ]
         )->fetchAll(PDO::FETCH_ASSOC);
+
         foreach ($rows as $row) {
             $jsonData = json_decode($row['json_value'], true);
             $this->sql(
@@ -92,8 +95,10 @@ class Version20180413102103 extends AbstractMigration
                 'context' => 'category',
             ]
         )->fetchAll(PDO::FETCH_ASSOC);
+
         foreach ($rows as $row) {
             $jsonData = json_decode($row['json_value'], true);
+
             if (!array_key_exists('heureka_category', $jsonData)) {
                 continue;
             }

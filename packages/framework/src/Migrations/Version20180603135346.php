@@ -13,6 +13,7 @@ class Version20180603135346 extends AbstractMigration
     public function up(Schema $schema)
     {
         $pricingGroupsCount = $this->sql('SELECT count(*) FROM pricing_groups')->fetchColumn(0);
+
         if ($pricingGroupsCount > 0) {
             return;
         }

@@ -48,6 +48,7 @@ class CategoryRepositoryTest extends TransactionFunctionalTestCase
     {
         $categoryData = $this->categoryDataFactory->create();
         $names = [];
+
         foreach ($this->localization->getLocalesOfAllDomains() as $locale) {
             $names[$locale] = 'name';
         }
@@ -78,6 +79,7 @@ class CategoryRepositoryTest extends TransactionFunctionalTestCase
     {
         $categoryData = $this->categoryDataFactory->create();
         $names = [];
+
         foreach ($this->localization->getLocalesOfAllDomains() as $locale) {
             $names[$locale] = 'name';
         }

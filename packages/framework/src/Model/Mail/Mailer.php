@@ -43,11 +43,13 @@ class Mailer
     public function flushSpoolQueue()
     {
         $transport = $this->swiftMailer->getTransport();
+
         if (!($transport instanceof Swift_Transport_SpoolTransport)) {
             return;
         }
 
         $spool = $transport->getSpool();
+
         if ($spool instanceof Swift_Spool) {
             $spool->flushQueue($this->realSwiftTransport);
         }
@@ -66,6 +68,7 @@ class Mailer
         }
 
         $successSend = $this->swiftMailer->send($message, $failedRecipients);
+
         if (!$successSend && count($failedRecipients) > 0) {
             throw new SendMailFailedException($failedRecipients);
         }
@@ -93,9 +96,11 @@ class Mailer
         $message->setSubject($subject);
         $message->setFrom($fromEmail, $fromName);
         $message->setTo($toEmail);
+
         if ($messageData->bccEmail !== null) {
             $message->addBcc($messageData->bccEmail);
         }
+
         if ($messageData->replyTo !== null) {
             $message->addReplyTo($messageData->replyTo);
         }

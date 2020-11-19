@@ -141,6 +141,7 @@ class ProductDataFactory implements ProductDataFactoryInterface
                 sprintf('Method "%s" has been already called and cannot be called multiple times.', __METHOD__)
             );
         }
+
         if ($this->availabilityFacade !== null) {
             return;
         }
@@ -180,6 +181,7 @@ class ProductDataFactory implements ProductDataFactoryInterface
     protected function fillNew(ProductData $productData)
     {
         $productVatsIndexedByDomain = [];
+
         foreach ($this->domain->getAllIds() as $domainId) {
             $productVatsIndexedByDomain[$domainId] = $this->vatFacade->getDefaultVatForDomain($domainId);
         }
@@ -229,6 +231,7 @@ class ProductDataFactory implements ProductDataFactoryInterface
         $translations = $product->getTranslations();
         $names = [];
         $variantAliases = [];
+
         foreach ($translations as $translation) {
             $names[$translation->getLocale()] = $translation->getName();
             $variantAliases[$translation->getLocale()] = $translation->getVariantAlias();
@@ -265,6 +268,7 @@ class ProductDataFactory implements ProductDataFactoryInterface
         $productData->orderingPriority = $product->getOrderingPriority();
 
         $productData->parameters = $this->getParametersData($product);
+
         try {
             $productData->manualInputPricesByPricingGroupId = $this->productInputPriceFacade->getManualInputPricesDataIndexedByPricingGroupId(
                 $product
@@ -285,6 +289,7 @@ class ProductDataFactory implements ProductDataFactoryInterface
     protected function getAccessoriesData(Product $product)
     {
         $productAccessoriesByPosition = [];
+
         foreach ($this->productAccessoryRepository->getAllByProduct($product) as $productAccessory) {
             $productAccessoriesByPosition[$productAccessory->getPosition()] = $productAccessory->getAccessory();
         }
@@ -300,6 +305,7 @@ class ProductDataFactory implements ProductDataFactoryInterface
     {
         $productParameterValuesData = [];
         $productParameterValues = $this->parameterRepository->getProductParameterValuesByProduct($product);
+
         foreach ($productParameterValues as $productParameterValue) {
             $productParameterValuesData[] = $this->productParameterValueDataFactory->createFromProductParameterValue(
                 $productParameterValue
@@ -315,6 +321,7 @@ class ProductDataFactory implements ProductDataFactoryInterface
     protected function getNullForAllDomains()
     {
         $nullForAllDomains = [];
+
         foreach ($this->domain->getAll() as $domainConfig) {
             $nullForAllDomains[$domainConfig->getId()] = null;
         }
@@ -328,9 +335,11 @@ class ProductDataFactory implements ProductDataFactoryInterface
     protected function getNullForAllPricingGroups()
     {
         $inputPrices = [];
+
         foreach ($this->pricingGroupFacade->getAll() as $pricingGroup) {
             $inputPrices[$pricingGroup->getId()] = null;
         }
+
         return $inputPrices;
     }
 }

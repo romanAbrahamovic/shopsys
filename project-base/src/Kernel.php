@@ -60,6 +60,7 @@ class Kernel extends BaseKernel
     public function registerBundles(): iterable
     {
         $contents = require $this->getProjectDir() . '/config/bundles.php';
+
         foreach ($contents as $class => $envs) {
             if ($envs[$this->environment] ?? $envs['all'] ?? false) {
                 yield new $class();
@@ -111,12 +112,14 @@ class Kernel extends BaseKernel
     protected function configureSwiftMailer(ContainerBuilder $container): void
     {
         $envMailerDeliveryWhitelist = getenv('MAILER_DELIVERY_WHITELIST');
+
         if ($envMailerDeliveryWhitelist !== false) {
             $mailerDeliveryWhitelist = explode(',', $envMailerDeliveryWhitelist);
             $container->setParameter('mailer_delivery_whitelist', $mailerDeliveryWhitelist);
         }
 
         $envMailerDisableDelivery = getenv('MAILER_DISABLE_DELIVERY');
+
         if ($envMailerDisableDelivery !== false) {
             $castedEnvMailerDisableDelivery = (bool)(filter_var(
                 $envMailerDisableDelivery,
@@ -132,6 +135,7 @@ class Kernel extends BaseKernel
         }
 
         $envMailerMasterEmailAddress = getenv('MAILER_MASTER_EMAIL_ADDRESS');
+
         if ($envMailerMasterEmailAddress !== false) {
             $container->setParameter('mailer_master_email_address', $envMailerMasterEmailAddress);
         }

@@ -53,6 +53,7 @@ class IndependentPaymentVisibilityCalculationTest extends TransactionFunctionalT
     {
         $paymentData = $this->paymentDataFactory->create();
         $names = [];
+
         foreach ($this->localization->getLocalesOfAllDomains() as $locale) {
             $names[$locale] = null;
         }
@@ -114,6 +115,7 @@ class IndependentPaymentVisibilityCalculationTest extends TransactionFunctionalT
     {
         $paymentData = $this->paymentDataFactory->create();
         $names = [];
+
         foreach ($this->localization->getLocalesOfAllDomains() as $locale) {
             $names[$locale] = 'paymentName';
         }

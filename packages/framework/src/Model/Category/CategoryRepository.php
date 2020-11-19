@@ -119,6 +119,7 @@ class CategoryRepository extends NestedTreeRepository
         $rows = $queryBuilder->select('c.id, IDENTITY(c.parent) AS parentId, ct.name')->getQuery()->getScalarResult();
 
         $fullPathsById = [];
+
         foreach ($rows as $row) {
             if (array_key_exists($row['parentId'], $fullPathsById)) {
                 $fullPathsById[$row['id']] = $fullPathsById[$row['parentId']] . ' - ' . $row['name'];
@@ -152,6 +153,7 @@ class CategoryRepository extends NestedTreeRepository
 
         if ($rootCategory === null) {
             $message = 'Root category not found';
+
             throw new RootCategoryNotFoundException($message);
         }
 
@@ -209,6 +211,7 @@ class CategoryRepository extends NestedTreeRepository
     {
         /** @var \Shopsys\FrameworkBundle\Model\Category\Category|null $category */
         $category = $this->getCategoryRepository()->find($categoryId);
+
         if ($category !== null && $category->getParent() === null) {
             // Copies logic from getAllQueryBuilder() - excludes root category
             // Query builder is not used to be able to get the category from identity map if it was loaded previously
@@ -228,6 +231,7 @@ class CategoryRepository extends NestedTreeRepository
 
         if ($category === null) {
             $message = 'Category with ID ' . $categoryId . ' not found.';
+
             throw new CategoryNotFoundException($message);
         }
 
@@ -431,6 +435,7 @@ class CategoryRepository extends NestedTreeRepository
             return [];
         }
         $listableProductCountsIndexedByCategoryId = [];
+
         foreach ($categories as $category) {
             // Initialize array with zeros as categories without found products will not be represented in result rows
             $listableProductCountsIndexedByCategoryId[$category->getId()] = 0;
@@ -505,6 +510,7 @@ class CategoryRepository extends NestedTreeRepository
     public function getProductMainCategoryOnDomain(Product $product, $domainId)
     {
         $productMainCategory = $this->findProductMainCategoryOnDomain($product, $domainId);
+
         if ($productMainCategory === null) {
             throw new CategoryNotFoundException(
                 sprintf(

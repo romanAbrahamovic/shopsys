@@ -18,6 +18,7 @@ class RegisterCronModulesCompilerPass implements CompilerPassInterface
         $cronConfigDefinition = $container->findDefinition(CronConfig::class);
 
         $taggedServiceIds = $container->findTaggedServiceIds('shopsys.cron');
+
         foreach ($taggedServiceIds as $serviceId => $tags) {
             foreach ($tags as $tag) {
                 $cronConfigDefinition->addMethodCall(

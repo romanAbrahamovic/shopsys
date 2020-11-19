@@ -50,6 +50,7 @@ class ImageFactoryTest extends TestCase
         $images = $imageFactory->createMultiple($imageEntityConfig, 1, 'type', $filenames);
 
         $this->assertCount(2, $images);
+
         foreach ($images as $image) {
             $temporaryFiles = $image->getTemporaryFilesForUpload();
             $this->assertSame(1, $image->getEntityId());

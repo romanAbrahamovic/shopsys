@@ -122,6 +122,7 @@ class SliderController extends AdminBaseController
                     'url' => $this->generateUrl('admin_slider_edit', ['id' => $sliderItem->getId()]),
                 ]
             );
+
             return $this->redirectToRoute('admin_slider_list');
         }
 

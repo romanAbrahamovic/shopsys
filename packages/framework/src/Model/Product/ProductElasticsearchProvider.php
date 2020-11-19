@@ -45,6 +45,7 @@ class ProductElasticsearchProvider
         if (count($products) === 0) {
             throw new ProductNotFoundException();
         }
+
         return array_shift($products);
     }
 

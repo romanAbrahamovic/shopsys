@@ -84,6 +84,7 @@ class ParameterRepository
 
         if ($parameter === null) {
             $message = 'Parameter with ID ' . $parameterId . ' not found.';
+
             throw new ParameterNotFoundException($message);
         }
 
@@ -246,6 +247,7 @@ class ParameterRepository
     {
         $queryBuilder = $this->getParameterRepository()->createQueryBuilder('p');
         $index = 0;
+
         foreach ($namesByLocale as $locale => $name) {
             $alias = 'pt' . $index;
             $localeParameterName = 'locale' . $index;
@@ -273,6 +275,7 @@ class ParameterRepository
     protected function getParameterValuesIndexedByProductIdAndParameterName(array $productIdsAndParameterNamesAndValues)
     {
         $productParameterValuesIndexedByProductIdAndParameterName = [];
+
         foreach ($productIdsAndParameterNamesAndValues as $productIdAndParameterNameAndValue) {
             $parameterName = $productIdAndParameterNameAndValue['name'];
             $productId = $productIdAndParameterNameAndValue['productId'];

@@ -58,6 +58,7 @@ class CurrencyRepository
 
         if ($currency === null) {
             $message = 'Currency with ID ' . $currencyId . ' not found.';
+
             throw new CurrencyNotFoundException($message);
         }
 

@@ -62,6 +62,7 @@ class ImageConfigLoader
                 __METHOD__
             ));
         }
+
         if ($this->entityNameResolver !== null) {
             return;
         }
@@ -154,6 +155,7 @@ class ImageConfigLoader
     protected function prepareSizes($sizesConfig)
     {
         $result = [];
+
         foreach ($sizesConfig as $sizeConfig) {
             $sizeName = $sizeConfig[ImageConfigDefinition::CONFIG_SIZE_NAME];
             $key = Utils::ifNull($sizeName, ImageEntityConfig::WITHOUT_NAME_KEY);
@@ -161,6 +163,7 @@ class ImageConfigLoader
                 $sizeName ?: '~',
                 $sizeConfig[ImageConfigDefinition::CONFIG_SIZE_ADDITIONAL_SIZES]
             );
+
             if (array_key_exists($key, $result)) {
                 throw new DuplicateSizeNameException($sizeName);
             }
@@ -174,6 +177,7 @@ class ImageConfigLoader
                 $additionalSizes
             );
         }
+
         if (!array_key_exists(ImageConfig::ORIGINAL_SIZE_NAME, $result)) {
             $result[ImageConfig::ORIGINAL_SIZE_NAME] = new ImageSizeConfig(
                 ImageConfig::ORIGINAL_SIZE_NAME,
@@ -197,13 +201,16 @@ class ImageConfigLoader
     {
         $usedMedia = [];
         $result = [];
+
         foreach ($additionalSizesConfig as $index => $additionalSizeConfig) {
             $media = $additionalSizeConfig[ImageConfigDefinition::CONFIG_SIZE_ADDITIONAL_SIZE_MEDIA];
             $height = $additionalSizeConfig[ImageConfigDefinition::CONFIG_SIZE_HEIGHT];
             $width = $additionalSizeConfig[ImageConfigDefinition::CONFIG_SIZE_WIDTH];
+
             if ($width === null && $height === null) {
                 throw new WidthAndHeightMissingException(sprintf('%s.additionalSizes[%s]', $sizeName, $index));
             }
+
             if (in_array($media, $usedMedia, true)) {
                 throw new DuplicateMediaException($media);
             }
@@ -215,6 +222,7 @@ class ImageConfigLoader
                 $media
             );
         }
+
         return $result;
     }
 
@@ -225,8 +233,10 @@ class ImageConfigLoader
     protected function prepareTypes($typesConfig)
     {
         $result = [];
+
         foreach ($typesConfig as $typeConfig) {
             $typeName = $typeConfig[ImageConfigDefinition::CONFIG_TYPE_NAME];
+
             if (array_key_exists($typeName, $result)) {
                 throw new DuplicateTypeNameException($typeName);
             }
@@ -245,6 +255,7 @@ class ImageConfigLoader
     {
         $multipleByType = [];
         $multipleByType[ImageEntityConfig::WITHOUT_NAME_KEY] = $entityConfig[ImageConfigDefinition::CONFIG_MULTIPLE];
+
         foreach ($entityConfig[ImageConfigDefinition::CONFIG_TYPES] as $typeConfig) {
             $type = $typeConfig[ImageConfigDefinition::CONFIG_TYPE_NAME];
             $multiple = $typeConfig[ImageConfigDefinition::CONFIG_MULTIPLE];

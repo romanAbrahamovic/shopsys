@@ -41,6 +41,7 @@ final class CreateAndPushGitTagReleaseWorker extends AbstractShopsysReleaseWorke
         );
 
         $this->confirm(sprintf('Confirm that tag "%s" is pushed', $versionString));
+
         if ($this->initialBranchName === 'master') {
             $this->symfonyStyle->note(
                 'Rest assured, after you push the tagged master branch, the new tag will be propagated to packagist once the project is built and split on Heimdall automatically.'

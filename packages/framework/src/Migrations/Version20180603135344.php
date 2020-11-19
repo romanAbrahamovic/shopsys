@@ -17,6 +17,7 @@ class Version20180603135344 extends AbstractMigration
         )->fetchColumn(
             0
         );
+
         if ($defaultUnitId > 0) {
             return;
         }

@@ -485,6 +485,7 @@ class RouteConfigCustomization
         if ($domainId !== null) {
             return $persistentReferenceFacade->getReferenceForDomain($name, $domainId);
         }
+
         return $persistentReferenceFacade->getReference($name);
     }
 

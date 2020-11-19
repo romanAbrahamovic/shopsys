@@ -44,9 +44,11 @@ class CurrentCustomerUser
     public function getPricingGroup()
     {
         $customerUser = $this->findCurrentCustomerUser();
+
         if ($customerUser === null) {
             return $this->pricingGroupSettingFacade->getDefaultPricingGroupByCurrentDomain();
         }
+
         return $customerUser->getPricingGroup();
     }
 

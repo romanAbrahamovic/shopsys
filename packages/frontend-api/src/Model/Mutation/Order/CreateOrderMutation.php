@@ -93,6 +93,7 @@ class CreateOrderMutation implements MutationInterface, AliasedInterface
             $order->getStatus(),
             $order->getDomainId()
         );
+
         if ($mailTemplate->isSendMail()) {
             $this->orderMailFacade->sendEmail($order);
         }

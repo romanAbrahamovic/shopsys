@@ -38,12 +38,15 @@ class DatabaseHelper extends Module
         $connectionParams = $connection->getParams();
 
         $dsnParams = [];
+
         if (isset($connectionParams['host'])) {
             $dsnParams['host'] = $connectionParams['host'];
         }
+
         if (isset($connectionParams['port'])) {
             $dsnParams['port'] = $connectionParams['port'];
         }
+
         if (isset($connectionParams['dbname'])) {
             $dsnParams['dbname'] = $connectionParams['dbname'];
         }

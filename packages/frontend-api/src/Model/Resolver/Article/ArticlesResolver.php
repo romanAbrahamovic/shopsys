@@ -120,6 +120,7 @@ class ArticlesResolver implements ResolverInterface, AliasedInterface
         if ($placement === null) {
             return $this->articleFacade->getAllVisibleArticlesCountByDomainId($domainId);
         }
+
         return $this->articleFacade->getAllVisibleArticlesCountByDomainIdAndPlacement($domainId, $placement);
     }
 }

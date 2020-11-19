@@ -410,6 +410,7 @@ class ProductOnCurrentDomainElasticFacade implements ProductOnCurrentDomainFacad
         )->setFrom($offset);
 
         $productsResult = $this->productElasticsearchRepository->getSortedProductsResultByFilterQuery($filterQuery);
+
         return $productsResult->getHits();
     }
 
@@ -433,6 +434,7 @@ class ProductOnCurrentDomainElasticFacade implements ProductOnCurrentDomainFacad
         )->setFrom($offset);
 
         $productsResult = $this->productElasticsearchRepository->getSortedProductsResultByFilterQuery($filterQuery);
+
         return $productsResult->getHits();
     }
 }

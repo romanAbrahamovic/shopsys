@@ -279,6 +279,7 @@ class Product extends AbstractTranslatableEntity
         $this->exportProduct = true;
 
         $this->variants = new ArrayCollection();
+
         if ($variants === null) {
             $this->variantType = self::VARIANT_TYPE_NONE;
         } else {
@@ -304,6 +305,7 @@ class Product extends AbstractTranslatableEntity
         if (!$this->isVariant()) {
             $this->setProductCategoryDomains($productCategoryDomains);
         }
+
         if (!$this->isMainVariant()) {
             $this->setAvailabilityAndStock($productData);
             $this->catnum = $productData->catnum;
@@ -356,6 +358,7 @@ class Product extends AbstractTranslatableEntity
     protected function editFlags(array $flags)
     {
         $this->flags->clear();
+
         foreach ($flags as $flag) {
             $this->flags->add($flag);
         }
@@ -368,6 +371,7 @@ class Product extends AbstractTranslatableEntity
     {
         $this->usingStock = $productData->usingStock;
         $this->availability = $productData->availability;
+
         if ($this->usingStock) {
             $this->stockQuantity = $productData->stockQuantity;
             $this->outOfStockAction = $productData->outOfStockAction;
@@ -611,6 +615,7 @@ class Product extends AbstractTranslatableEntity
                 $this->productCategoryDomains->removeElement($productCategoryDomain);
             }
         }
+
         foreach ($productCategoryDomains as $productCategoryDomain) {
             if ($this->isProductCategoryDomainInArray(
                 $productCategoryDomain,
@@ -619,6 +624,7 @@ class Product extends AbstractTranslatableEntity
                 $this->productCategoryDomains->add($productCategoryDomain);
             }
         }
+
         if (!$this->isMainVariant()) {
             return;
         }
@@ -642,6 +648,7 @@ class Product extends AbstractTranslatableEntity
                 return true;
             }
         }
+
         return false;
     }
 
@@ -724,6 +731,7 @@ class Product extends AbstractTranslatableEntity
     public function markForVisibilityRecalculation()
     {
         $this->setRecalculateVisibility(true);
+
         if ($this->isMainVariant()) {
             foreach ($this->getVariants() as $variant) {
                 $variant->setRecalculateVisibility(true);
@@ -795,9 +803,11 @@ class Product extends AbstractTranslatableEntity
                 $variant->getId()
             );
         }
+
         if ($variant->isMainVariant()) {
             throw new MainVariantCannotBeVariantException($variant->getId());
         }
+
         if ($variant->isVariant()) {
             throw new ProductIsAlreadyVariantException($variant->getId());
         }
@@ -887,6 +897,7 @@ class Product extends AbstractTranslatableEntity
         foreach ($productData->name as $locale => $name) {
             $this->translation($locale)->setName($name);
         }
+
         foreach ($productData->variantAlias as $locale => $variantAlias) {
             $this->translation($locale)->setVariantAlias($variantAlias);
         }
@@ -1009,6 +1020,7 @@ class Product extends AbstractTranslatableEntity
                 $variantProduct->unsetMainVariant();
             }
         }
+
         if ($this->isVariant()) {
             return new ProductDeleteResult([$this->getMainVariant()]);
         }

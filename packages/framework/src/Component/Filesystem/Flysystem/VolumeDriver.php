@@ -49,15 +49,19 @@ class VolumeDriver extends Driver
             if (!$res) {
                 [$type] = explode('/', $stat['mime']);
                 $fallback = $this->options['resourcePath'] . DIRECTORY_SEPARATOR . strtolower($type) . '.png';
+
                 if (is_file($fallback)) {
                     $res = $this->tmbname($stat);
+
                     if (!$this->fs->put($fallback, $this->createThumbnailPath($res))) {
                         $res = false;
                     }
                 }
             }
+
             return $res;
         }
+
         return false;
     }
 
@@ -76,10 +80,12 @@ class VolumeDriver extends Driver
 
             $stat['hash'] = $stat['hash'] ?? '';
             $name = $this->tmbname($stat);
+
             if ($this->fs->has($this->createThumbnailPath($name))) {
                 return $name;
             }
         }
+
         return false;
     }
 
@@ -102,8 +108,10 @@ class VolumeDriver extends Driver
         @mkdir($this->tmbPath, 0777, true);
 
         $name = parent::createTmb($thumbnailPath, $stat);
+
         if ($name !== false) {
             $fp = fopen($this->createThumbnailPath($name), 'rb');
+
             if ($fp === false) {
                 return false;
             }
@@ -120,6 +128,7 @@ class VolumeDriver extends Driver
     protected function rmTmb($stat)
     {
         $path = $this->tmbPath . DIRECTORY_SEPARATOR . $this->tmbname($stat);
+
         if ($this->tmbURL) {
             $thumbnailName = $this->gettmb($path, $stat);
             $stat['tmb'] = $thumbnailName ?: 1;
@@ -133,6 +142,7 @@ class VolumeDriver extends Driver
             foreach ($this->scandirCE($this->decode($stat['hash'])) as $p) {
                 elFinder::extendTimeLimit(30);
                 $name = $this->basenameCE($p);
+
                 if ($name !== '.' && $name !== '..') {
                     $this->rmTmb($this->stat($p));
                 }
@@ -152,6 +162,7 @@ class VolumeDriver extends Driver
     protected function _stat($path, $hash = '')
     {
         $stat = parent::_stat($path);
+
         if ($hash !== '') {
             $stat['hash'] = $hash;
         }

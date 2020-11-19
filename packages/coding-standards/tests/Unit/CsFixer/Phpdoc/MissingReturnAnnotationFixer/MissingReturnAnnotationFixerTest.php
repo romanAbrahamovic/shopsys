@@ -28,6 +28,7 @@ final class MissingReturnAnnotationFixerTest extends AbstractCheckerTestCase
     public function provideWrongToFixedFiles(): Iterator
     {
         yield [__DIR__ . '/wrong/wrong.php', __DIR__ . '/fixed/fixed.php'];
+
         yield [__DIR__ . '/wrong/wrong2.php', __DIR__ . '/fixed/fixed2.php'];
     }
 

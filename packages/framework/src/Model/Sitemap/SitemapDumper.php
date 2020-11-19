@@ -81,6 +81,7 @@ class SitemapDumper extends Dumper
         $files = array_filter($this->abstractFilesystem->listContents($targetDir), function ($file) {
             return strpos($file['filename'], $this->sitemapFilePrefix) === 0;
         });
+
         foreach ($files as $file) {
             $this->abstractFilesystem->delete($file['path']);
         }

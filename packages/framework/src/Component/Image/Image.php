@@ -90,6 +90,7 @@ class Image implements EntityFileUploadInterface
     public function getTemporaryFilesForUpload(): array
     {
         $files = [];
+
         if ($this->temporaryFilename !== null) {
             $files[static::UPLOAD_KEY] = new FileForUpload(
                 $this->temporaryFilename,
@@ -99,6 +100,7 @@ class Image implements EntityFileUploadInterface
                 FileNamingConvention::TYPE_ID
             );
         }
+
         return $files;
     }
 

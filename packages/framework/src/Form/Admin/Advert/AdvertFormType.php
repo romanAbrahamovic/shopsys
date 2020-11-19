@@ -209,6 +209,7 @@ class AdvertFormType extends AbstractType
                     } elseif ($advertData->type === Advert::TYPE_IMAGE) {
                         $validationGroups[] = static::VALIDATION_GROUP_TYPE_IMAGE;
                     }
+
                     return $validationGroups;
                 },
             ]);

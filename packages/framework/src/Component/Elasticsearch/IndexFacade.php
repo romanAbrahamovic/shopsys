@@ -105,6 +105,7 @@ class IndexFacade
 
         $exportedIds = [];
         $lastProcessedId = 0;
+
         do {
             // detach objects from manager to prevent memory leaks
             $this->entityManager->clear();
@@ -164,6 +165,7 @@ class IndexFacade
         );
 
         $lastProcessedId = 0;
+
         while (($changedIdsBatch = $index->getChangedIdsForBatch(
             $indexDefinition->getDomainId(),
             $lastProcessedId,
@@ -200,6 +202,7 @@ class IndexFacade
 
         if ($existingIndexName === $indexDefinition->getVersionedIndexName()) {
             $output->writeln(sprintf('Index "%s" on domain "%s" is up to date', $indexName, $domainId));
+
             return;
         }
 
@@ -234,6 +237,7 @@ class IndexFacade
             }
 
             $idsToDelete = array_values(array_diff($idsToExport, array_keys($currentBatchData)));
+
             if (count($idsToDelete) > 0) {
                 $this->indexRepository->deleteIds($indexAlias, $idsToDelete);
             }

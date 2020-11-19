@@ -89,6 +89,7 @@ final class TravisStatusReporter
     private function createApiUrls(array $packages, string $branch): array
     {
         $apiUrls = [];
+
         foreach ($packages as $package) {
             $apiUrls[] = 'https://api.travis-ci.org/repos/' . $package . '/cc.xml?branch=' . $branch;
         }
@@ -104,6 +105,7 @@ final class TravisStatusReporter
         $xmlResponse = simplexml_load_string($response);
 
         $projectXmlElements = $xmlResponse->xpath('Project');
+
         if ($projectXmlElements === []) {
             return;
         }

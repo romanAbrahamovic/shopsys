@@ -74,6 +74,7 @@ abstract class AbstractMissingAnnotationsFixer implements FixerInterface, Define
 
         for ($index = $limit; $index > 0; --$index) {
             $token = $tokens[$index];
+
             if (!$token->isGivenKind(T_FUNCTION)) {
                 continue;
             }
@@ -83,6 +84,7 @@ abstract class AbstractMissingAnnotationsFixer implements FixerInterface, Define
             }
 
             $docToken = $this->getDocToken($tokens, $index);
+
             if ($docToken !== null && $this->shouldSkipDocToken($docToken)) {
                 continue;
             }
@@ -328,6 +330,7 @@ abstract class AbstractMissingAnnotationsFixer implements FixerInterface, Define
         }
 
         $doc = new DocBlock($docToken->getContent());
+
         return count($doc->getLines()) - 1;
     }
 
@@ -340,6 +343,7 @@ abstract class AbstractMissingAnnotationsFixer implements FixerInterface, Define
         $doc = new DocBlock($docToken->getContent());
 
         $lastParamLine = null;
+
         foreach ($doc->getAnnotationsOfType('param') as $annotation) {
             $lastParamLine = max($lastParamLine, $annotation->getEnd());
         }

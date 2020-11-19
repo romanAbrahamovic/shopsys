@@ -127,6 +127,7 @@ class LegalConditionsFacade
     protected function setArticle($settingKey, ?Article $privacyPolicy = null, $domainId)
     {
         $articleId = null;
+
         if ($privacyPolicy !== null) {
             $articleId = $privacyPolicy->getId();
         }

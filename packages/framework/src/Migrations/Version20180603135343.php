@@ -13,6 +13,7 @@ class Version20180603135343 extends AbstractMigration
     public function up(Schema $schema)
     {
         $vatsCount = $this->sql('SELECT count(*) FROM vats')->fetchColumn(0);
+
         if ($vatsCount > 0) {
             return;
         }
@@ -25,6 +26,7 @@ class Version20180603135343 extends AbstractMigration
         )->fetchColumn(
             0
         );
+
         if ($defaultVatId > 0) {
             return;
         }

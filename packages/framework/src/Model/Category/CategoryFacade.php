@@ -150,6 +150,7 @@ class CategoryFacade
         $originalNames = $category->getNames();
 
         $category->edit($categoryData);
+
         if ($category->getParent() === null) {
             $category->setParent($rootCategory);
         }
@@ -172,6 +173,7 @@ class CategoryFacade
     public function deleteById($categoryId)
     {
         $category = $this->categoryRepository->getById($categoryId);
+
         foreach ($category->getChildren() as $child) {
             $child->setParent($category->getParent());
         }
@@ -195,6 +197,7 @@ class CategoryFacade
         $this->categoryRepository->getAll();
 
         $rootCategory = $this->getRootCategory();
+
         foreach ($parentIdByCategoryId as $categoryId => $parentId) {
             if ($parentId === null) {
                 $parent = $rootCategory;
@@ -266,6 +269,7 @@ class CategoryFacade
     public function getAllCategoriesWithPreloadedChildren($locale)
     {
         $categories = $this->categoryRepository->getPreOrderTreeTraversalForAllCategories($locale);
+
         return $this->categoryWithPreloadedChildrenFactory->createCategoriesWithPreloadedChildren($categories);
     }
 
@@ -389,6 +393,7 @@ class CategoryFacade
     public function getProductMainCategoriesIndexedByDomainId(Product $product)
     {
         $mainCategoriesIndexedByDomainId = [];
+
         foreach ($this->domain->getAll() as $domainConfig) {
             $mainCategoriesIndexedByDomainId[$domainConfig->getId()] = $this->categoryRepository->findProductMainCategoryOnDomain(
                 $product,
@@ -448,8 +453,10 @@ class CategoryFacade
     public function getVisibleOnDomainById($domainId, $categoryId)
     {
         $category = $this->getById($categoryId);
+
         if (!$category->isVisible($domainId)) {
             $message = 'Category ID ' . $categoryId . ' is not visible on domain ID ' . $domainId;
+
             throw new CategoryNotFoundException($message);
         }
 
@@ -481,6 +488,7 @@ class CategoryFacade
     protected function createFriendlyUrlsWhenRenamed(Category $category, array $originalNames): void
     {
         $changedNames = $this->getChangedNamesByLocale($category, $originalNames);
+
         if (count($changedNames) === 0) {
             return;
         }
@@ -500,11 +508,13 @@ class CategoryFacade
     protected function getChangedNamesByLocale(Category $category, array $originalNames): array
     {
         $changedCategoryNames = [];
+
         foreach ($category->getNames() as $locale => $name) {
             if ($name !== $originalNames[$locale]) {
                 $changedCategoryNames[$locale] = $name;
             }
         }
+
         return $changedCategoryNames;
     }
 

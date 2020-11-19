@@ -41,6 +41,7 @@ class DirectoryStructureCreator
     {
         $uploadedFileEntityConfigs = $this->uploadedFileConfig->getAllUploadedFileEntityConfigs();
         $directories = [];
+
         foreach ($uploadedFileEntityConfigs as $uploadedFileEntityConfig) {
             $directories[] = $this->uploadedFileLocator->getAbsoluteFilePath(
                 $uploadedFileEntityConfig->getEntityName()

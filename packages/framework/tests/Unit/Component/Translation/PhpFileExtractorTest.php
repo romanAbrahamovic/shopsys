@@ -63,6 +63,7 @@ class PhpFileExtractorTest extends TestCase
     private function getExtractor()
     {
         $phpFileExtractorFactory = new PhpFileExtractorFactory($this->getDocParser());
+
         return $phpFileExtractorFactory->create();
     }
 

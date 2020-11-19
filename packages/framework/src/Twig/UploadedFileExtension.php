@@ -84,6 +84,7 @@ class UploadedFileExtension extends AbstractExtension
 
             return '<i class="' . implode(' ', $classes) . '"></i>';
         }
+
         return '<img src="' . $fileThumbnailInfo->getImageUri() . '"/>';
     }
 

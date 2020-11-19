@@ -39,6 +39,7 @@ final class PackageProvider
     {
         $packages = $this->getPackagesByOrganization($organization);
         $packagesWithVersions = [];
+
         foreach ($packages as $package) {
             $packagesWithVersions[$package] = $this->getPackageVersions($package);
         }

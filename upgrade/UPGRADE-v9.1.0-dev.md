@@ -208,3 +208,6 @@ There you can find links to upgrade notes for other versions too.
 
 - enable logging in tests ([#2113](https://github.com/shopsys/shopsys/pull/2113))
     - see #project-base-diff to update your project
+
+- add fixer to ensure empty line before statements like foreach, return, etc. ([#2128](https://github.com/shopsys/shopsys/pull/2128))
+    - see #project-base-diff to update your project

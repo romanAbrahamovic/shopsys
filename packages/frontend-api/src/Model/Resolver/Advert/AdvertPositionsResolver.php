@@ -29,12 +29,14 @@ class AdvertPositionsResolver implements ResolverInterface, AliasedInterface
     public function resolve(): array
     {
         $serialized = [];
+
         foreach ($this->advertPositionRegistry->getAllLabelsIndexedByNames() as $positionName => $description) {
             $serialized[] = [
                 'description' => $description,
                 'positionName' => $positionName,
             ];
         }
+
         return $serialized;
     }
 

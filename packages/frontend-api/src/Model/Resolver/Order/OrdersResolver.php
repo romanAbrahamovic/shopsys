@@ -54,6 +54,7 @@ class OrdersResolver implements ResolverInterface, AliasedInterface
         $this->setDefaultFirstOffsetIfNecessary($argument);
 
         $customerUser = $this->currentCustomerUser->findCurrentCustomerUser();
+
         if (!$customerUser) {
             throw new UserError('Token is not valid.');
         }

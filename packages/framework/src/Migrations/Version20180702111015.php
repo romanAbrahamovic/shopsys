@@ -13,6 +13,7 @@ class Version20180702111015 extends AbstractMigration
     public function up(Schema $schema)
     {
         $administratorsCount = $this->sql('SELECT count(*) FROM administrators')->fetchColumn(0);
+
         if ($administratorsCount > 0) {
             return;
         }

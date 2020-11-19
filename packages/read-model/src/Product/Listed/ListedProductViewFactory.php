@@ -169,6 +169,7 @@ class ListedProductViewFactory
         $productActionViews = $this->productActionViewFacade->getForProducts($products);
 
         $listedProductViews = [];
+
         foreach ($products as $product) {
             $productId = $product->getId();
             $listedProductViews[$productId] = $this->createFromProduct(
@@ -193,6 +194,7 @@ class ListedProductViewFactory
         );
 
         $listedProductViews = [];
+
         foreach ($productsArray as $productArray) {
             $productId = $productArray['id'];
             $listedProductViews[$productId] = $this->createFromArray(
@@ -234,6 +236,7 @@ class ListedProductViewFactory
             ),
             E_USER_DEPRECATED
         );
+
         return $this->priceFactory->createProductPriceFromArrayByPricingGroup($pricesArray, $pricingGroup);
     }
 
@@ -244,6 +247,7 @@ class ListedProductViewFactory
     protected function getFlagIdsForProduct(Product $product): array
     {
         $flagIds = [];
+
         foreach ($product->getFlags() as $flag) {
             $flagIds[] = $flag->getId();
         }
@@ -263,6 +267,7 @@ class ListedProductViewFactory
                 sprintf('Method "%s" has been already called and cannot be called multiple times.', __METHOD__)
             );
         }
+
         if ($this->imageViewFacade !== null) {
             return;
         }
@@ -289,6 +294,7 @@ class ListedProductViewFactory
                 sprintf('Method "%s" has been already called and cannot be called multiple times.', __METHOD__)
             );
         }
+
         if ($this->productActionViewFacade !== null) {
             return;
         }
@@ -318,6 +324,7 @@ class ListedProductViewFactory
                 sprintf('Method "%s" has been already called and cannot be called multiple times.', __METHOD__)
             );
         }
+
         if ($this->productActionViewFactory !== null) {
             return;
         }
@@ -344,6 +351,7 @@ class ListedProductViewFactory
                 sprintf('Method "%s" has been already called and cannot be called multiple times.', __METHOD__)
             );
         }
+
         if ($this->currentCustomerUser !== null) {
             return;
         }
@@ -370,6 +378,7 @@ class ListedProductViewFactory
                 sprintf('Method "%s" has been already called and cannot be called multiple times.', __METHOD__)
             );
         }
+
         if ($this->priceFactory !== null) {
             return;
         }

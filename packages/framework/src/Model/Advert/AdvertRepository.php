@@ -81,10 +81,13 @@ class AdvertRepository
     public function getById($advertId)
     {
         $advert = $this->getAdvertRepository()->find($advertId);
+
         if ($advert === null) {
             $message = 'Advert with ID ' . $advertId . ' not found';
+
             throw new AdvertNotFoundException($message);
         }
+
         return $advert;
     }
 }

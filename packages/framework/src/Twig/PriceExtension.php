@@ -163,6 +163,7 @@ class PriceExtension extends AbstractExtension
         if ($price->isZero()) {
             return t('Free');
         }
+
         return $this->priceFilter($price);
     }
 
@@ -178,6 +179,7 @@ class PriceExtension extends AbstractExtension
             return t('Free');
         }
         $currency = $this->currencyFacade->getById($currencyId);
+
         return $this->formatCurrency($price, $currency, $locale);
     }
 

@@ -45,8 +45,11 @@ final class OrderedParamAnnotationsFixerTest extends AbstractCheckerTestCase
     public function provideCorrectFiles(): Iterator
     {
         yield [__DIR__ . '/correct/correct.php'];
+
         yield [__DIR__ . '/correct/correct2.php'];
+
         yield [__DIR__ . '/correct/correct3.php'];
+
         yield [__DIR__ . '/correct/correct4.php'];
     }
 

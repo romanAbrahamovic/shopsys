@@ -65,6 +65,7 @@ class Configuration extends DoctrineConfiguration
 
             /** @var \Doctrine\DBAL\Migrations\Version[] $foundMigrationVersionsByClass */
             $foundMigrationVersionsByClass = [];
+
             foreach (parent::getMigrations() as $migrationVersion) {
                 $class = get_class($migrationVersion->getMigration());
                 $foundMigrationVersionsByClass[$class] = $migrationVersion;

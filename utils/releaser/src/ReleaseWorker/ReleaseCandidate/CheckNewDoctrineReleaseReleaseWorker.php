@@ -69,6 +69,7 @@ final class CheckNewDoctrineReleaseReleaseWorker extends AbstractShopsysReleaseW
 
         if ($forkedDoctrineVersion === $originDoctrineVersion) {
             $this->symfonyStyle->success(Message::SUCCESS);
+
             return;
         }
 

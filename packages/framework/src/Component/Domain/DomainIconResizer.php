@@ -70,6 +70,7 @@ class DomainIconResizer
                 $ex
             );
             $this->logger->addError($message, ['exception' => $moveToFolderFailedException]);
+
             throw $moveToFolderFailedException;
         }
     }

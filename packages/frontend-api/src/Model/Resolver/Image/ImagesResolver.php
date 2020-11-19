@@ -83,6 +83,7 @@ class ImagesResolver implements ResolverInterface
                 __METHOD__
             ));
         }
+
         if ($this->frontendApiImageFacade !== null) {
             return;
         }
@@ -107,6 +108,7 @@ class ImagesResolver implements ResolverInterface
     public function resolveByProduct($data, ?string $type, ?string $size): array
     {
         $productId = $data instanceof Product ? $data->getId() : $data['id'];
+
         return $this->resolveByEntityId($productId, static::IMAGE_ENTITY_PRODUCT, $type, $size);
     }
 
@@ -273,6 +275,7 @@ class ImagesResolver implements ResolverInterface
     protected function getSizeConfigsForAdvert(Advert $advert, ?string $type, ?string $size): array
     {
         $entityName = static::IMAGE_ENTITY_ADVERT;
+
         if ($size === null) {
             return array_merge(
                 $this->getSizeConfigs($type, $advert->getPositionName(), $entityName),

@@ -86,6 +86,7 @@ class FlagDataFixture extends AbstractReferenceFixture
     private function createFlag(FlagData $flagData, $referenceName = null)
     {
         $flag = $this->flagFacade->create($flagData);
+
         if ($referenceName !== null) {
             $this->addReference($referenceName, $flag);
         }

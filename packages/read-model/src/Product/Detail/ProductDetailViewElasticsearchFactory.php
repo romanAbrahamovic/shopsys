@@ -114,6 +114,7 @@ class ProductDetailViewElasticsearchFactory
     public function createFromProductArray(array $productArray): ProductDetailView
     {
         $parameterViews = [];
+
         foreach ($productArray['parameters'] as $parameterArray) {
             $parameterViews[] = $this->parameterViewFactory->createFromParameterArray($parameterArray);
         }
@@ -143,6 +144,7 @@ class ProductDetailViewElasticsearchFactory
     protected function sortIndexedArrayByArray(array $array, array $order): array
     {
         $sortedArray = [];
+
         foreach ($order as $key) {
             if (!array_key_exists($key, $array)) {
                 continue;
@@ -150,6 +152,7 @@ class ProductDetailViewElasticsearchFactory
             $sortedArray[$key] = $array[$key];
             unset($array[$key]);
         }
+
         return $sortedArray;
     }
 

@@ -165,6 +165,7 @@ class ProductController extends FrontBaseController
         $category = $this->categoryFacade->getVisibleOnDomainById($this->domain->getId(), $id);
 
         $requestPage = $request->get(self::PAGE_QUERY_PARAMETER);
+
         if (!$this->isRequestPageValid($requestPage)) {
             return $this->redirectToRoute('front_product_list', $this->getRequestParametersWithoutPage());
         }
@@ -191,6 +192,7 @@ class ProductController extends FrontBaseController
         );
 
         $productFilterCountData = null;
+
         if ($this->moduleFacade->isEnabled(ModuleList::PRODUCT_FILTER_COUNTS)) {
             $productFilterCountData = $this->productOnCurrentDomainFacade->getProductFilterCountDataInCategory(
                 $id,
@@ -215,6 +217,7 @@ class ProductController extends FrontBaseController
         if ($request->isXmlHttpRequest()) {
             return $this->render('Front/Content/Product/ajaxList.html.twig', $viewParameters);
         }
+
         return $this->render('Front/Content/Product/list.html.twig', $viewParameters);
     }
 
@@ -225,6 +228,7 @@ class ProductController extends FrontBaseController
     public function listByBrandAction(Request $request, $id)
     {
         $requestPage = $request->get(self::PAGE_QUERY_PARAMETER);
+
         if (!$this->isRequestPageValid($requestPage)) {
             return $this->redirectToRoute('front_brand_detail', $this->getRequestParametersWithoutPage());
         }
@@ -251,6 +255,7 @@ class ProductController extends FrontBaseController
         if ($request->isXmlHttpRequest()) {
             return $this->render('Front/Content/Product/ajaxListByBrand.html.twig', $viewParameters);
         }
+
         return $this->render('Front/Content/Product/listByBrand.html.twig', $viewParameters);
     }
 
@@ -262,6 +267,7 @@ class ProductController extends FrontBaseController
         $searchText = $request->query->get(self::SEARCH_TEXT_PARAMETER, '');
 
         $requestPage = $request->get(self::PAGE_QUERY_PARAMETER);
+
         if (!$this->isRequestPageValid($requestPage)) {
             return $this->redirectToRoute('front_product_search', $this->getRequestParametersWithoutPage());
         }
@@ -288,6 +294,7 @@ class ProductController extends FrontBaseController
         );
 
         $productFilterCountData = null;
+
         if ($this->moduleFacade->isEnabled(ModuleList::PRODUCT_FILTER_COUNTS)) {
             $productFilterCountData = $this->productOnCurrentDomainFacade->getProductFilterCountDataForSearch(
                 $searchText,
@@ -310,6 +317,7 @@ class ProductController extends FrontBaseController
             return $this->render('Front/Content/Product/ajaxSearch.html.twig', $viewParameters);
         }
         $viewParameters['foundCategories'] = $this->searchCategories($searchText);
+
         return $this->render('Front/Content/Product/search.html.twig', $viewParameters);
     }
 
@@ -425,6 +433,7 @@ class ProductController extends FrontBaseController
     {
         $parameters = $this->requestExtension->getAllRequestParams();
         unset($parameters[self::PAGE_QUERY_PARAMETER]);
+
         return $parameters;
     }
 }

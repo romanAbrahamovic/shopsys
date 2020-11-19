@@ -49,6 +49,7 @@ class FrontendCustomerUserProvider implements UserProviderInterface
                 'Unable to find an active Shopsys\FrameworkBundle\Model\Customer\User object identified by email "%s".',
                 $email
             );
+
             throw new UsernameNotFoundException($message, 0);
         }
 
@@ -62,8 +63,10 @@ class FrontendCustomerUserProvider implements UserProviderInterface
     public function refreshUser(UserInterface $userInterface)
     {
         $class = get_class($userInterface);
+
         if (!$this->supportsClass($class)) {
             $message = sprintf('Instances of "%s" are not supported.', $class);
+
             throw new UnsupportedUserException($message);
         }
 
