@@ -50,12 +50,31 @@ jobs:
                 run: "sed -i \"s#php-fpm-image#${{ secrets.DOCKER_USERNAME }}/php-fpm:${DOCKER_PHP_FPM_IMAGE_TAG}-${{ github.sha }}#\" ./docker-compose.yml"
             -   name: Update docker-compose.yml file with right Elastichsearch image
                 run: "sed -i \"s#elasticsearch-image#${{ secrets.DOCKER_USERNAME }}/elasticsearch:${DOCKER_ELASTICSEARCH_IMAGE_TAG}#\" ./docker-compose.yml"
-            -   name: Create branch specific PHP-FPM image with project files
+            -   name: Run PHP-FPM image
                 run: |
                     docker run -d --name php-fpm ${{ secrets.DOCKER_USERNAME }}/php-fpm:${DOCKER_PHP_FPM_IMAGE_TAG}
+            -   name: Set current date as env variable
+                run: |
+                    echo "DATE_NOW=$(date +'%Y-%m-%d%p')" >> $GITHUB_ENV
+            -   name: Cache Composer dependencies
+                id: composer-cache
+                uses: actions/cache@v2
+                with:
+                    path: ./vendor/
+                    key: ${{ env.DATE_NOW }}-${{ hashFiles('composer.json') }}-2
+            -   name: Cache composer.lock
+                uses: actions/cache@v2
+                with:
+                    path: ./composer.lock
+                    key: ${{ env.DATE_NOW }}-${{ hashFiles('composer.json') }}-composer-lock-2
+            -   name: Prepare branch specific PHP-FPM image with project files
+                run: |
                     docker cp ./ php-fpm:/var/www/html
                     docker exec php-fpm composer install --optimize-autoloader --no-interaction
                     docker exec php-fpm php phing dirs-create test-dirs-create assets npm build-version-generate
+            -   name: Copy vendor from container to prepare for cache
+                if: steps.composer-cache.outputs.cache-hit != 'true'
+                run: docker cp php-fpm:/var/www/html/vendor ./vendor
             -   name: Push branch specific PHP-FPM image to Docker Hub
                 run: |
                     docker commit -m="Include Composer and NPM files" php-fpm ${{ secrets.DOCKER_USERNAME }}/php-fpm:${DOCKER_PHP_FPM_IMAGE_TAG}-${{ github.sha }}
