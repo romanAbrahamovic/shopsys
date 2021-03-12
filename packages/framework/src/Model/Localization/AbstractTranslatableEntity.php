@@ -19,6 +19,11 @@ abstract class AbstractTranslatableEntity extends AbstractTranslatable
     protected $currentTranslation;
 
     /**
+     * @var string[]
+     */
+    protected $allLocales;
+
+    /**
      * @return string|null
      */
     protected function getCurrentLocale()

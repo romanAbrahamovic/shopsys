@@ -884,9 +884,13 @@ class Product extends AbstractTranslatableEntity
      */
     protected function setTranslations(ProductData $productData): void
     {
+
+        d($this->allLocales);
+        d($this->currentLocale);
+
         /** @var \Shopsys\FrameworkBundle\Model\Product\ProductTranslation $translation */
-        foreach ($this->translations->getValues() as $translation) {
-            $this->setTranslation($productData, $translation->getLocale());
+        foreach ($this->allLocales as $locale) {
+            $this->setTranslation($productData, $locale);
         }
     }
 
