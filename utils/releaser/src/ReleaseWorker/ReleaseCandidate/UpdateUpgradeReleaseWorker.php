@@ -100,7 +100,8 @@ final class UpdateUpgradeReleaseWorker extends AbstractShopsysReleaseWorker
             'Typically, you need to:
             - check the correctness of the order of Shopsys packages and sections, 
             - check whether there are no duplicated instructions for modifying docker related files, 
-            - change the links from master to the %1$s version in UPGRADE-%1$s.md file.',
+            - change the links from master to the %1$s version in UPGRADE-%1$s.md file.
+            - replace \#project-base-diff with actual commit links in project-base repository',
             $versionString
         ));
         $this->symfonyStyle->note(

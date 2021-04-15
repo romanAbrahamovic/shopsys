@@ -49,7 +49,7 @@ npm publish
 
 # set new version attribute to %s in project-base/package.json
 
-# commit the changes manually with "npm package is now updated for %s release
+# commit the changes manually with "npm package is now updated for %s release"
 ',
             $version->getVersionString(),
             $version->getVersionString(),
