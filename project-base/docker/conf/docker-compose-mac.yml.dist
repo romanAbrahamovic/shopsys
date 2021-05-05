@@ -1,4 +1,4 @@
-version: "3.4"
+version: "3.7"
 
 services:
     postgres:
@@ -38,9 +38,8 @@ services:
                 www_data_gid: 20
         container_name: shopsys-framework-php-fpm
         volumes:
-            - shopsys-framework-sync:/var/www/html
-            - ./web:/var/www/html/web:cached
-            - ./.git/:/var/www/html/.git:delegated
+            - mutagen:/var/www/html
+            - ./.npm-global:/var/www/html/.npm-global
         ports:
             - "35729:35729"
 
@@ -100,5 +99,24 @@ services:
             - "5601:5601"
 
 volumes:
-    shopsys-framework-sync:
-        external: true
+    mutagen:
+
+x-mutagen:
+    sync:
+        defaults:
+            ignore:
+                vcs: true
+            permissions:
+                defaultOwner: "id:501"
+        mutagen:
+            alpha: "."
+            beta: "volume://mutagen"
+            mode: "two-way-resolved"
+            ignore:
+                paths:
+                    - ./.DS_Store
+                    - ./.idea
+                    - ./.npm-global
+                    - ./nbproject
+                    - ./var/elasticsearch-data
+                    - ./var/postgres-data
