@@ -134,3 +134,4 @@ There you can find links to upgrade notes for other versions too.
         - method `getProductsByCategoryCount()` was removed, use `getFilteredProductsByCategoryCount()` instead
         - method `getProductsByBrand()` was removed, use `getFilteredProductsByBrand()` instead
         - method `getProductsByBrandCount()` was removed, use `getFilteredProductsByBrandCount()` instead
+    - removed parameter `shopsys.var_dir` from shopsys/framework package, add this parameter to your project config
