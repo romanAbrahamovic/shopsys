@@ -287,3 +287,6 @@ There you can find links to upgrade notes for other versions too.
 
 - remove unnecessary extended ImageExtension from your project
     - see #project-base-diff to update your project
+- remove unnecessary `services_acc.yaml` config from your project
+    - create `config/packages/acc/framework.yaml` with configuration for acceptance testing
+    - see #project-base-diff to update your project
