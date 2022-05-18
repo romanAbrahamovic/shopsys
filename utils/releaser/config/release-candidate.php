@@ -34,6 +34,7 @@ use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigura
 return static function (ContainerConfigurator $containerConfigurator): void {
     $services = $containerConfigurator->services();
 
+    $services->set(UpdateChangelogReleaseWorker::class);
     $services->set(VerifyInitialBranchReleaseWorker::class);
     $services->set(CheckUncommittedChangesReleaseWorker::class);
     $services->set(CheckPackagesTravisBuildsReleaseWorker::class);
@@ -48,7 +49,6 @@ return static function (ContainerConfigurator $containerConfigurator): void {
     $services->set(SetFrameworkBundleVersionReleaseWorker::class);
     $services->set(UpdateListOfSupportedVersionsReleaseWorker::class);
     $services->set(ResolveDocsTodoReleaseWorker::class);
-    $services->set(UpdateChangelogReleaseWorker::class);
     $services->set(UpdateUpgradeReleaseWorker::class);
     $services->set(ReleaseNewNodeModulePackageVersion::class);
     $services->set(SetMutualDependenciesToVersionReleaseWorker::class);
